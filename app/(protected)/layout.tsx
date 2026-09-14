@@ -1,0 +1,4 @@
+import Link from 'next/link'
+import { createClient } from '@/lib/supabase/server'
+import { redirect } from 'next/navigation'
+export default async function ProtectedLayout({children}:{children:React.ReactNode}){const supabase=await createClient();const {data,error}=await supabase.auth.getClaims();if(error||!data?.claims)redirect('/login');return <><header className="nav"><div className="container" style={{width:'100%',display:'flex',justifyContent:'space-between'}}><div className="brand">BanQuisqueya <span>& Trust</span></div><div className="muted">Portal privado</div></div></header><div className="shell"><aside className="sidebar"><Link href="/investor">Dashboard</Link><Link href="/investor/investments">Mis inversiones</Link><Link href="/investor/documents">Documentos</Link><Link href="/investor/profile">Mi perfil</Link><Link href="/admin">Administración</Link></aside><main>{children}</main></div></>}

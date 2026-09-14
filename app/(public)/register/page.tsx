@@ -1,0 +1,5 @@
+'use client'
+import { useState } from 'react'
+import { createClient } from '@/lib/supabase/client'
+import Link from 'next/link'
+export default function Register(){const [name,setName]=useState('');const [email,setEmail]=useState('');const [password,setPassword]=useState('');const [msg,setMsg]=useState('');async function submit(e:React.FormEvent){e.preventDefault();setMsg('');const {error}=await createClient().auth.signUp({email,password,options:{data:{full_name:name}}});setMsg(error?error.message:'Registro creado. Revisa tu correo para confirmar la cuenta.')}return <main className="auth"><form className="form" onSubmit={submit}><h1>Solicitar acceso</h1><label>Nombre completo</label><input value={name} onChange={e=>setName(e.target.value)} required/><label>Email</label><input type="email" value={email} onChange={e=>setEmail(e.target.value)} required/><label>Contraseña</label><input type="password" minLength={8} value={password} onChange={e=>setPassword(e.target.value)} required/>{msg&&<p>{msg}</p>}<button className="btn primary">Crear cuenta</button><p className="muted">¿Ya tienes cuenta? <Link href="/login">Iniciar sesión</Link></p></form></main>}

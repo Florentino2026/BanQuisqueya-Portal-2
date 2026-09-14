@@ -1,0 +1,6 @@
+'use client'
+import { useState } from 'react'
+import { createClient } from '@/lib/supabase/client'
+import { useRouter } from 'next/navigation'
+import Link from 'next/link'
+export default function Login(){const [email,setEmail]=useState('');const [password,setPassword]=useState('');const [error,setError]=useState('');const [loading,setLoading]=useState(false);const router=useRouter();async function submit(e:React.FormEvent){e.preventDefault();setLoading(true);setError('');const {error}=await createClient().auth.signInWithPassword({email,password});if(error)setError(error.message);else router.push('/investor');setLoading(false)}return <main className="auth"><form className="form" onSubmit={submit}><h1>Acceso de inversionistas</h1><p className="muted">Ingresa a tu portal privado.</p><label>Email</label><input type="email" value={email} onChange={e=>setEmail(e.target.value)} required/><label>Contraseña</label><input type="password" value={password} onChange={e=>setPassword(e.target.value)} required/>{error&&<p>{error}</p>}<button className="btn primary" disabled={loading}>{loading?'Ingresando…':'Iniciar sesión'}</button><p className="muted">¿No tienes cuenta? <Link href="/register">Solicitar acceso</Link></p></form></main>}

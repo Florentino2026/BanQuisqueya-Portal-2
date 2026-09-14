@@ -1,0 +1,2 @@
+import { createClient } from '@/lib/supabase/server'
+export default async function Profile(){const s=await createClient();const {data:c}=await s.auth.getClaims();const {data}=await s.from('profiles').select('full_name,role,created_at').eq('id',c?.claims?.sub as string).maybeSingle();return <div className="dashboard"><div className="container"><h1>Mi perfil</h1><div className="card"><p><b>Nombre:</b> {data?.full_name||'No informado'}</p><p><b>Email:</b> {String(c?.claims?.email||'')}</p><p><b>Rol:</b> {data?.role||'member'}</p></div></div></div>}

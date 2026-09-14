@@ -1,0 +1,1 @@
+export default function Documents(){return <div className="dashboard"><div className="container"><h1>Documentos</h1><div className="card"><p>Tu biblioteca privada estará disponible aquí: contratos, estados de cuenta, reportes y documentación KYC.</p></div></div></div>}
