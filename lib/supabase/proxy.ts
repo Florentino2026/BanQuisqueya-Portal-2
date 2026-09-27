@@ -5,8 +5,8 @@ export async function updateSession(request: NextRequest) {
   let supabaseResponse = NextResponse.next({ request })
 
   const supabase = createServerClient(
-    process.process.env.supabase_url!
-process.env.supabase_publishable_key!
+  process.env.supabase_url!,
+  process.env.supabase_publishable_key!,
 
       cookies: {
         getAll() {
