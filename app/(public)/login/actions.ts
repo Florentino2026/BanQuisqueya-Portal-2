@@ -3,12 +3,12 @@
 import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 
-export async function loginInvestor(formData: FormData) {
+export async function loginInvestor(formData: FormData): Promise<void> {
   const email = String(formData.get('email') || '')
   const password = String(formData.get('password') || '')
 
   if (!email || !password) {
-    return { error: 'Email y contraseña son obligatorios.' }
+    redirect('/login?error=missing_fields')
   }
 
   const supabase = await createClient()
@@ -19,7 +19,7 @@ export async function loginInvestor(formData: FormData) {
   })
 
   if (error) {
-    return { error: 'Email o contraseña incorrectos.' }
+    redirect('/login?error=invalid_credentials')
   }
 
   redirect('/investor')
