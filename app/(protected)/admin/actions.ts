@@ -3,8 +3,9 @@
 import { createClient } from '@/lib/supabase/server'
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
+import { canReviewKyc } from '@/lib/auth/roles'
 
-async function requireAdmin() {
+async function requireKycReviewer() {
   const supabase = await createClient()
   const { data: claimsData } = await supabase.auth.getClaims()
   const userId = claimsData?.claims?.sub as string | undefined
@@ -17,13 +18,13 @@ async function requireAdmin() {
     .eq('id', userId)
     .maybeSingle()
 
-  if (profile?.role !== 'admin') redirect('/investor')
+  if (!canReviewKyc(profile?.role)) redirect('/investor')
 
   return { supabase, userId }
 }
 
 export async function reviewKyc(formData: FormData) {
-  const { supabase, userId } = await requireAdmin()
+  const { supabase, userId } = await requireKycReviewer()
 
   const investorId = String(formData.get('investor_id') || '')
   const decision = String(formData.get('decision') || '')
