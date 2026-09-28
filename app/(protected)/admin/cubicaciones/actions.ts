@@ -34,6 +34,7 @@ export async function createCubicacion(formData:FormData){
   work_description:String(formData.get('work_description')||''),
   contract_id:String(formData.get('contract_id')||'')||null,
   purchase_order_id:String(formData.get('purchase_order_id')||'')||null,
+  budget_line_id:String(formData.get('budget_line_id')||'')||null,
   submitted_by:userId,status:'submitted'
  }).select('id').single()
  if(error||!data) redirect('/admin/cubicaciones?error='+encodeURIComponent(error?.message||'No se pudo crear la cubicación'))
