@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { registerInvestor } from './actions'
+import BrandLogo from '@/components/BrandLogo'
 
 export default function Register() {
   const [name, setName] = useState('')
@@ -37,8 +38,7 @@ export default function Register() {
   }
 
   return (
-    <main className="auth">
-      <form className="form" onSubmit={submit}>
+    <main className="auth"><div style={{width:"min(470px,100%)"}}><div style={{display:"flex",justifyContent:"center",marginBottom:24}}><Link href="/"><BrandLogo/></Link></div><form className="form" onSubmit={submit}>
         <h1>Solicitar acceso</h1>
 
         <label>Nombre completo</label>
@@ -81,7 +81,6 @@ export default function Register() {
         <p className="muted">
           ¿Ya tienes cuenta? <Link href="/login">Iniciar sesión</Link>
         </p>
-      </form>
-    </main>
+      </form><p className="muted" style={{textAlign:'center',fontSize:13,marginTop:16}}>BanQuisqueya &amp; Trust · Fondo de Inversión Privado · <a href="mailto:info@banquisqueya.com">info@banquisqueya.com</a></p></div></main>
   )
 }
