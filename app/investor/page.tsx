@@ -3,6 +3,7 @@ import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import { signOut } from './actions'
 import { isStaffRole, ROLE_LABELS } from '@/lib/auth/roles'
+import BrandLogo from '@/components/BrandLogo'
 
 export default async function InvestorDashboard() {
   const supabase = await createClient()
@@ -22,14 +23,14 @@ export default async function InvestorDashboard() {
   return <>
     <header className="nav">
       <div className="container" style={{width:'100%',display:'flex',justifyContent:'space-between',alignItems:'center'}}>
-        <div className="brand">BanQuisqueya <span>& Trust</span></div><div style={{display:'flex',gap:8,alignItems:'center'}}>{isStaffRole(profile?.role) && <Link className="btn secondary" href="/admin">Panel de administración · {ROLE_LABELS[profile!.role as keyof typeof ROLE_LABELS]}</Link>}</div>
+        <Link href="/"><BrandLogo compact/></Link><div style={{display:'flex',gap:8,alignItems:'center'}}>{isStaffRole(profile?.role) && <Link className="btn secondary" href="/admin">Panel de administración · {ROLE_LABELS[profile!.role as keyof typeof ROLE_LABELS]}</Link>}</div>
         <form action={signOut}><button className="btn secondary" type="submit">Cerrar sesión</button></form>
       </div>
     </header>
 
     <main className="dashboard">
       <div className="container">
-        <p className="muted">Portal del inversionista</p>
+        <span className="pill">Fondo de Inversión Privado</span><p className="muted" style={{marginTop:12}}>Portal del inversionista</p>
         <h1>Bienvenido, {displayName}</h1>
         <p className="muted">{user.email}</p>
 
@@ -81,7 +82,7 @@ export default async function InvestorDashboard() {
           )}
         </section>
 
-        <section className="section" style={{paddingTop:0}}>
+        <section className="section" style={{paddingTop:0}}><div className="institutional contact-card" style={{marginBottom:24}}><div><strong>BanQuisqueya & Trust</strong><p className="muted" style={{margin:4}}>Atención institucional para inversionistas y proyectos.</p></div><a href="mailto:info@banquisqueya.com">info@banquisqueya.com</a></div></section><section className="section" style={{paddingTop:0}}>
           <h2>Últimas transacciones</h2>
           {!transactions?.length ? (
             <div className="card"><p className="muted">No hay transacciones registradas todavía.</p></div>
