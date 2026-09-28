@@ -104,7 +104,7 @@ export async function reviewKyc(formData: FormData) {
 }
 
 export async function updateDocumentReview(formData: FormData) {
-  const { supabase } = await requireAdmin()
+  const { supabase, userId } = await requireAdmin()
 
   const documentId = String(formData.get('document_id') || '')
   const investorId = String(formData.get('investor_id') || '')
@@ -128,7 +128,7 @@ export async function updateDocumentReview(formData: FormData) {
   if (notes) {
     await supabase.from('kyc_reviews').insert({
       investor_id: investorId,
-      reviewer_id: (await supabase.auth.getClaims()).data.claims?.sub,
+      reviewer_id: userId,
       decision: 'request_changes',
       notes: `Documento: ${notes}`,
     })
