@@ -27,3 +27,4 @@ export default async function Admin(){
   <section className="panel"><div className="panel-heading"><div><h2>Actividad reciente</h2><p className="muted">Últimas solicitudes registradas en la plataforma.</p></div></div>{!recent?.length?<div className="empty-state">No hay solicitudes registradas todavía.</div>:<div className="table-wrap"><table className="table professional-table"><thead><tr><th>Solicitud</th><th>Proyecto</th><th>Monto</th><th>Etapa</th><th>Fecha</th></tr></thead><tbody>{recent.map(x=><tr key={x.id}><td><strong>{x.application_number}</strong></td><td>{x.project_name}</td><td>{x.requested_amount?x.currency+' '+Number(x.requested_amount).toLocaleString('en-US'):'—'}</td><td><span className="status-chip">{x.status}</span></td><td>{new Date(x.created_at).toLocaleDateString('es-DO')}</td></tr>)}</tbody></table></div>}</section>
  </div></div>
 }
+// Build verification: admin dashboard metric hrefs are explicitly typed.
