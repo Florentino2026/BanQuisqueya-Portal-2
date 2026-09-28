@@ -1,18 +1,4 @@
 import Link from 'next/link'
+import BrandLogo from '@/components/BrandLogo'
 import { loginInvestor } from './actions'
-
-export default function Login() {
-  return (
-    <main className="auth">
-      <form className="form" action={loginInvestor}>
-        <h1>Iniciar sesión</h1>
-        <label htmlFor="email">Email</label>
-        <input id="email" name="email" type="email" required />
-        <label htmlFor="password">Contraseña</label>
-        <input id="password" name="password" type="password" required />
-        <button type="submit" className="btn primary">Iniciar sesión</button>
-        <p className="muted">¿No tienes cuenta? <Link href="/register">Solicitar acceso</Link></p>
-      </form>
-    </main>
-  )
-}
+export default function Login(){return <main className="auth"><div style={{width:'min(470px,100%)'}}><div style={{display:'flex',justifyContent:'center',marginBottom:24}}><Link href="/"><BrandLogo/></Link></div><form className="form" action={loginInvestor}><span className="pill">Portal del inversionista</span><h1>Iniciar sesión</h1><p className="muted">Accede de forma segura a tu información, solicitudes e inversiones.</p><label htmlFor="email">Email</label><input id="email" name="email" type="email" required /><label htmlFor="password">Contraseña</label><input id="password" name="password" type="password" required /><button type="submit" className="btn primary">Iniciar sesión</button><p className="muted">¿No tienes cuenta? <Link href="/register">Solicitar acceso</Link></p><p className="muted" style={{fontSize:13}}>¿Necesitas información? <a href="mailto:info@banquisqueya.com">info@banquisqueya.com</a></p></form></div></main>}
