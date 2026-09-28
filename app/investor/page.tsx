@@ -9,9 +9,9 @@ export default async function InvestorDashboard() {
  const s=await createClient()
  const {data:{user}}=await s.auth.getUser()
  if(!user)redirect('/login')
- const [{data:profile},{data:investor},{data:investments},{data:transactions}]=await Promise.all([
-  s.from('profiles').select('full_name,role').eq('id',user.id).maybeSingle(),
-  s.from('investors').select('id,investor_type,status,kyc_status,country,risk_profile').eq('user_id',user.id).maybeSingle(),
+ const {data:profile}=await s.from('profiles').select('full_name,role').eq('id',user.id).maybeSingle()
+ const {data:investor}=await s.from('investors').select('id,investor_type,status,kyc_status,country,risk_profile').eq('user_id',user.id).maybeSingle()
+ const [{data:investments},{data:transactions}]=await Promise.all([
   s.from('investments').select('id,principal,currency,status,invested_at,maturity_date,project_id').eq('investor_id',investor?.id||'').order('created_at',{ascending:false}).limit(10),
   s.from('transactions').select('id,type,amount,currency,status,transaction_date,description').order('transaction_date',{ascending:false}).limit(8)
  ])
