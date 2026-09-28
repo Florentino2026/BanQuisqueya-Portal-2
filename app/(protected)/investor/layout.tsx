@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 import { isStaffRole, ROLE_LABELS } from '@/lib/auth/roles'
+import BrandLogo from '@/components/BrandLogo'
 
 export default async function InvestorLayout({children}:{children:React.ReactNode}){
  const supabase=await createClient()
@@ -11,7 +12,7 @@ export default async function InvestorLayout({children}:{children:React.ReactNod
  const {data:profile}=await supabase.from('profiles').select('role').eq('id',userId).maybeSingle()
  const staff=isStaffRole(profile?.role)
  return <div className="shell"><aside className="sidebar">
-  <div style={{padding:'0 0 16px'}}><strong>Portal del inversionista</strong></div>
+  <div style={{padding:'0 0 18px'}}><BrandLogo compact/><strong style={{display:'block',marginTop:10}}>Portal del inversionista</strong></div>
   <Link href="/investor">Dashboard</Link>
   <Link href="/investor/applications">Mis solicitudes</Link>
   <Link href="/investor/investments">Mis inversiones</Link>
