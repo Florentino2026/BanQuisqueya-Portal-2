@@ -20,6 +20,10 @@ export default async function AdminLayout({children}:{children:React.ReactNode})
   <Link href="/admin/applications">Solicitudes de financiamiento</Link>
   <Link href="/admin/projects">Proyectos</Link>
   {procurementAccess && <Link href="/admin/procurement">Procurement y compras</Link>}
+  {['admin','project_manager','finance','accounting','cfo'].includes(role) && <Link href="/admin/budget">Presupuestos</Link>}
+  {['admin','procurement','project_manager'].includes(role) && <Link href="/admin/procurement/quotes">Cotizaciones</Link>}
+  {['admin','procurement','project_manager','finance','accounting'].includes(role) && <Link href="/admin/procurement/orders">Órdenes de compra</Link>}
+  {['admin','legal','contract_manager','project_manager'].includes(role) && <Link href="/admin/contracts">Contratos</Link>}
   {cubicacionAccess && <Link href="/admin/cubicaciones">Cubicaciones y desembolsos</Link>}
   <Link href="/admin/organization">Estructura corporativa</Link>
   {(role==='admin'||role==='compliance'||role==='kyc_reviewer') && <Link href="/admin/investors">Inversionistas / KYC</Link>}
