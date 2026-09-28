@@ -12,7 +12,7 @@ export default async function Admin(){
   s.from('investors').select('*',{count:'exact',head:true}),
   s.from('projects').select('*',{count:'exact',head:true}),
   s.from('investors').select('*',{count:'exact',head:true}).eq('kyc_status','in_review'),
-  s.from('funding_applications').select('*',{count:'exact',head:true}).not('status','in',['funded','rejected','withdrawn']),
+  s.from('funding_applications').select('*',{count:'exact',head:true}).not('status','in','(funded,rejected,withdrawn)'),
   s.from('funding_applications').select('*',{count:'exact',head:true}).eq('status','due_diligence'),
   s.from('funding_applications').select('*',{count:'exact',head:true}).eq('status','funded')
  ])
