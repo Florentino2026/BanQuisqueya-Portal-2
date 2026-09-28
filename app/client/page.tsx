@@ -1,0 +1,36 @@
+import Link from 'next/link'
+import { redirect } from 'next/navigation'
+import { createClient } from '@/lib/supabase/server'
+
+const stages=[['submitted','Recibida'],['pre_screening','Pre-screening'],['kyc_review','KYC'],['due_diligence','Due Diligence'],['investment_committee','Comité'],['contracting','Contratación'],['funded','Financiada']] as const
+const labels:Record<string,string>=Object.fromEntries(stages)
+
+export default async function ClientDashboard(){
+ const s=await createClient()
+ const {data:{user}}=await s.auth.getUser()
+ if(!user)redirect('/login')
+ const {data:client}=await s.from('clients').select('id,legal_name,contact_name,status,kyc_status,country').eq('user_id',user.id).maybeSingle()
+ if(!client)redirect('/investor')
+ const {data:apps}=await s.from('funding_applications').select('id,application_number,project_name,requested_amount,currency,status,created_at').eq('client_id',client.id).order('created_at',{ascending:false}).limit(10)
+ const active=(apps??[]).filter(x=>!['funded','rejected','withdrawn'].includes(x.status))
+ const latest=apps?.[0]
+ const latestIndex=latest?Math.max(stages.findIndex(([key])=>key===latest.status),0):-1
+ return <div className="investor-portal">
+  <header className="portal-topbar"><Link href="/"><span className="brand">BANQUISQUEYA <span>& TRUST</span></span></Link><div className="topbar-right"><Link href="/investor" className="btn secondary">Portal inversionista</Link><Link href="/login" className="btn secondary">Salir</Link></div></header>
+  <main className="dashboard"><div className="container dashboard-wide">
+   <div className="dashboard-heading"><div><span className="eyebrow">BANQUISQUEYA & TRUST · CLIENT PORTAL</span><h1>Bienvenido, {client.contact_name||client.legal_name}</h1><p className="muted">Gestión de proyectos, solicitudes de financiamiento y documentación.</p></div><Link href="/investor/applications/new" className="btn primary">+ Presentar proyecto</Link></div>
+   <div className="metric-grid">
+    <div className="metric-card"><span className="metric-icon">PR</span><div><div className="metric-label">Solicitudes activas</div><div className="metric-value">{active.length}</div><div className="metric-caption">En proceso de evaluación</div></div></div>
+    <div className="metric-card"><span className="metric-icon">KY</span><div><div className="metric-label">KYC</div><div className="metric-value metric-text">{client.kyc_status||'Pendiente'}</div><div className="metric-caption">Expediente del cliente</div></div></div>
+    <div className="metric-card"><span className="metric-icon">PJ</span><div><div className="metric-label">Proyectos</div><div className="metric-value">{apps?.length||0}</div><div className="metric-caption">Presentados a BanQuisqueya</div></div></div>
+    <div className="metric-card"><span className="metric-icon">CO</span><div><div className="metric-label">Empresa</div><div className="metric-value metric-text">{client.status||'Activa'}</div><div className="metric-caption">{client.country||'País no indicado'}</div></div></div>
+   </div>
+   {latest&&<section className="panel"><div className="panel-heading"><div><h2>Seguimiento de tu proyecto</h2><p className="muted">{latest.application_number} · {latest.project_name}</p></div><Link href={'/investor/applications/'+latest.id} className="text-link">Ver expediente →</Link></div><div className="client-timeline">{stages.map(([key,label],i)=><div className={'timeline-step '+(i<=latestIndex?'active':'')} key={key}><span>{i+1}</span><strong>{label}</strong></div>)}</div><div className="client-current"><span>Etapa actual</span><strong>{labels[latest.status]||latest.status}</strong></div></section>}
+   <div className="dashboard-columns">
+    <section className="panel"><div className="panel-heading"><div><h2>Mis solicitudes</h2><p className="muted">Proyectos enviados y estado actual.</p></div><Link href="/investor/applications" className="text-link">Ver todas →</Link></div>{!apps?.length?<div className="empty-state">Todavía no has presentado un proyecto.</div>:<div className="table-wrap"><table className="table professional-table"><thead><tr><th>Solicitud</th><th>Proyecto</th><th>Monto</th><th>Estado</th></tr></thead><tbody>{apps.slice(0,5).map(x=><tr key={x.id}><td><strong>{x.application_number}</strong></td><td>{x.project_name}</td><td>{x.requested_amount?x.currency+' '+Number(x.requested_amount).toLocaleString('en-US'):'—'}</td><td><span className="status-chip">{labels[x.status]||x.status}</span></td></tr>)}</tbody></table></div>}</section>
+    <section className="panel"><div className="panel-heading"><div><h2>Próximos pasos</h2><p className="muted">Mantén el expediente completo.</p></div></div><div className="action-grid"><Link href="/investor/profile" className="action-card"><strong>Perfil y KYC</strong><span>Completar información corporativa y documentos</span></Link><Link href="/investor/applications/new" className="action-card"><strong>Nuevo proyecto</strong><span>Iniciar una nueva solicitud de financiamiento</span></Link><Link href="/investor/documents" className="action-card"><strong>Documentos</strong><span>Consultar archivos del expediente</span></Link></div></section>
+   </div>
+   <section className="notice-panel"><div><strong>¿Necesitas apoyo con tu operación?</strong><p>El equipo de BanQuisqueya & Trust puede acompañarte durante la evaluación, due diligence, estructuración y cierre.</p></div><a className="btn primary" href="mailto:info@banquisqueya.com">Contactar al equipo</a></section>
+  </div></main>
+ </div>
+}
