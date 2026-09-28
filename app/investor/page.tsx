@@ -15,8 +15,8 @@ export default async function InvestorDashboard() {
   s.from('investments').select('id,principal,currency,status,invested_at,maturity_date,project_id').eq('investor_id',investor?.id||'').order('created_at',{ascending:false}).limit(10),
   s.from('transactions').select('id,type,amount,currency,status,transaction_date,description').order('transaction_date',{ascending:false}).limit(8)
  ])
- const totalByCurrency=(investments??[]).reduce((acc:any,item:any)=>{const c=item.currency||'USD';acc[c]=(acc[c]||0)+Number(item.principal||0);return acc},{})
- const totalInvested=Object.values(totalByCurrency).reduce((a:any,b:any)=>a+Number(b),0)
+ const totalByCurrency: Record<string, number>=(investments??[]).reduce((acc:Record<string,number>,item:any)=>{const c=item.currency||'USD';acc[c]=(acc[c]||0)+Number(item.principal||0);return acc},{})
+ const totalInvested:number=Object.values(totalByCurrency).reduce((a:number,b:number)=>a+b,0)
  const displayName=profile?.full_name||user.email||'Inversionista'
  const kycLabel=({pending:'Pendiente',in_review:'En revisión',approved:'Aprobado',rejected:'Rechazado'} as any)[investor?.kyc_status||'pending']||investor?.kyc_status
  return <div className="investor-portal">
