@@ -1,11 +1,6 @@
 import Link from 'next/link'
 import BrandLogo from '@/components/BrandLogo'
 import { createClient } from '@/lib/supabase/server'
-import heroPart1 from '@/lib/hero-image-mini/part1'
-import heroPart2 from '@/lib/hero-image-mini/part2'
-
-const heroImage = `data:image/webp;base64,${heroPart1}${heroPart2}`
-
 export default async function Home(){
  const supabase=await createClient()
  const {data}=await supabase.from('projects').select('name,sector,location,description,minimum_investment,projected_return').eq('status','open').limit(6)
@@ -15,7 +10,7 @@ export default async function Home(){
    <nav style={{display:'flex',gap:10,alignItems:'center'}}><a className="muted" href="#oportunidades">Oportunidades</a><a className="muted" href="#areas">Sectores</a><a className="muted" href="#soluciones">Soluciones</a><a className="muted" href="#contacto">Contacto</a><Link className="btn secondary" href="/login">Acceso Inversionistas</Link></nav>
   </div></header>
   <main>
-   <section className="hero hero-image" style={{backgroundImage:`linear-gradient(90deg,rgba(7,23,45,.84) 0%,rgba(7,23,45,.38) 42%,rgba(7,23,45,.08) 72%,rgba(7,23,45,.18) 100%),url("${heroImage}")`}}>
+   <section className="hero hero-premium">
     <div className="container hero-image-content">
       <span className="hero-kicker">Fondo de Inversión Privado</span>
       <h1>Capital para un mejor mañana.</h1>
