@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 import { isStaffRole, ROLE_LABELS } from '@/lib/auth/roles'
+import BrandLogo from '@/components/BrandLogo'
 
 export default async function AdminLayout({children}:{children:React.ReactNode}){
  const supabase=await createClient()
@@ -15,7 +16,7 @@ export default async function AdminLayout({children}:{children:React.ReactNode})
  const cubicacionAccess=['admin','supervisor','project_manager','accounting','finance','cfo','treasury'].includes(role)
  const procurementAccess=['admin','procurement','vendor_manager','project_manager','finance','accounting','supervisor'].includes(role)
  return <div className="shell"><aside className="sidebar">
-  <div style={{padding:'0 0 16px'}}><strong>Administración</strong><div className="muted" style={{fontSize:12,marginTop:4}}>{ROLE_LABELS[role]}</div></div>
+  <div style={{padding:'0 0 18px'}}><BrandLogo compact/><strong style={{display:'block',marginTop:10}}>Administración</strong><div className="muted" style={{fontSize:12,marginTop:4}}>{ROLE_LABELS[role]}</div></div>
   <Link href="/admin">Dashboard administrativo</Link>
   <Link href="/admin/applications">Solicitudes de financiamiento</Link>
   <Link href="/admin/projects">Proyectos</Link>
