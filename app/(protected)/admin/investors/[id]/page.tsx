@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
+import { canReviewKyc } from '@/lib/auth/roles'
 import { reviewKyc, updateDocumentReview } from '../../actions'
 
 const statusLabels: Record<string,string> = {
@@ -26,7 +27,7 @@ export default async function InvestorKycReview({
   if (!userId) redirect('/login')
 
   const { data: admin } = await supabase.from('profiles').select('role').eq('id', userId).maybeSingle()
-  if (admin?.role !== 'admin') redirect('/investor')
+  if (!canReviewKyc(admin?.role)) redirect('/investor')
 
   const { data: investor } = await supabase
     .from('investors')
