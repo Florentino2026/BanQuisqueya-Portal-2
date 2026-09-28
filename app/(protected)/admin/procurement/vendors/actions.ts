@@ -1,0 +1,5 @@
+'use server'
+import {createClient} from '@/lib/supabase/server'
+import {revalidatePath} from 'next/cache'
+import {redirect} from 'next/navigation'
+export async function createVendor(formData:FormData){const supabase=await createClient();const {data:c}=await supabase.auth.getClaims();const userId=c?.claims?.sub as string|undefined;if(!userId)redirect('/login');const {data:p}=await supabase.from('profiles').select('role').eq('id',userId).maybeSingle();if(!['admin','procurement','vendor_manager'].includes(p?.role||''))redirect('/investor');const {error}=await supabase.from('vendors').insert({legal_name:String(formData.get('legal_name')),trade_name:String(formData.get('trade_name')||''),vendor_type:String(formData.get('vendor_type')||'contractor'),tax_id:String(formData.get('tax_id')||''),country:String(formData.get('country')||''),contact_name:String(formData.get('contact_name')||''),email:String(formData.get('email')||''),phone:String(formData.get('phone')||''),created_by:userId});if(error)redirect('/admin/procurement/vendors?error='+encodeURIComponent(error.message));revalidatePath('/admin/procurement/vendors');redirect('/admin/procurement/vendors?success=1')}
