@@ -14,7 +14,7 @@ export default async function AdminLayout({children}:{children:React.ReactNode})
  const cubicacionAccess=['admin','supervisor','project_manager','accounting','finance','cfo','treasury'].includes(role)
  const procurementAccess=['admin','procurement','vendor_manager','project_manager','finance','accounting','supervisor'].includes(role)
  return <div className="shell"><aside className="sidebar"><div className="sidebar-brand"><BrandLogo compact/><div><strong>Centro corporativo</strong><span>{ROLE_LABELS[role]}</span></div></div>
-  <div className="sidebar-section">GESTIÓN</div><Link href="/admin" className="sidebar-link">Dashboard ejecutivo</Link><Link href="/admin/applications" className="sidebar-link">Solicitudes de financiamiento</Link><Link href="/admin/projects" className="sidebar-link">Proyectos</Link>
+  <div className="sidebar-section">GESTIÓN</div><Link href="/admin" className="sidebar-link">Dashboard ejecutivo</Link><Link href="/admin/applications" className="sidebar-link">Solicitudes de financiamiento</Link><Link href="/admin/projects" className="sidebar-link">Proyectos</Link><Link href="/admin/partnerships" className="sidebar-link">Joint Ventures & Develop</Link>
   {procurementAccess&&<Link href="/admin/procurement" className="sidebar-link">Procurement y compras</Link>}
   {['admin','project_manager','finance','accounting','cfo'].includes(role)&&<Link href="/admin/budget" className="sidebar-link">Presupuestos</Link>}
   {['admin','procurement','project_manager'].includes(role)&&<Link href="/admin/procurement/quotes" className="sidebar-link">Cotizaciones</Link>}
