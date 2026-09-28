@@ -1,1 +1,15 @@
-export default function BrandLogo({compact=false}:{compact?:boolean}){return <div className={compact?'brand-logo compact':'brand-logo'} aria-label="BanQuisqueya & Trust"><svg className="brand-mark" viewBox="0 0 120 120" role="img"><defs><linearGradient id="bqBlue" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#1ea7ff"/><stop offset="48%" stopColor="#0757a8"/><stop offset="100%" stopColor="#071d3d"/></linearGradient><linearGradient id="bqSilver" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#ffffff"/><stop offset="45%" stopColor="#aeb8c5"/><stop offset="100%" stopColor="#687482"/></linearGradient></defs><path d="M18 10h50c25 0 37 12 37 30 0 10-5 18-14 23 12 5 19 14 19 27 0 19-14 30-39 30H18V10Zm24 18v27h23c10 0 16-5 16-14 0-9-6-13-16-13H42Zm0 46v27h28c11 0 17-5 17-14 0-9-6-13-17-13H42Z" fill="url(#bqBlue)" stroke="#063a73" strokeWidth="2"/><path d="M23 61h51c-18 3-36 13-45 28-8 13-1 24 13 24 17 0 34-13 47-29 10-12 17-20 24-20-5 11-13 24-23 35-16 18-32 27-48 27-20 0-31-13-25-29 5-14 18-27 35-36Z" fill="none" stroke="url(#bqSilver)" strokeWidth="7" strokeLinecap="round"/><path d="M79 88c8 8 15 13 26 18" fill="none" stroke="url(#bqSilver)" strokeWidth="6" strokeLinecap="round"/></svg>{!compact&&<div className="brand-wordmark"><strong>BANQUISQUEYA</strong><span>&amp; TRUST</span></div>}</div>}
+export default function BrandLogo({compact=false}:{compact?:boolean}){
+return <div className={compact?'brand-logo compact':'brand-logo'} aria-label="BanQuisqueya & Trust">
+<svg className="brand-mark" viewBox="0 0 100 100" role="img">
+<defs>
+<linearGradient id="bq1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#18a8ff"/><stop offset=".55" stopColor="#0757a8"/><stop offset="1" stopColor="#071d3d"/></linearGradient>
+<linearGradient id="bq2" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stopColor="#dce4ec"/><stop offset=".5" stopColor="#ffffff"/><stop offset="1" stopColor="#8996a5"/></linearGradient>
+</defs>
+<!-- Symmetrical BQ monogram: solid B with a precise silver Q counter -->
+<path d="M17 12h39c18 0 29 8 29 22 0 8-4 14-11 18 9 4 14 11 14 20 0 15-12 26-31 26H17V12Zm18 15v18h20c8 0 12-3 12-9s-4-9-12-9H35Zm0 33v21h22c8 0 13-4 13-10s-5-11-13-11H35Z" fill="url(#bq1)" stroke="#06396f" strokeWidth="1.5"/>
+<!-- Q stroke, centered and balanced -->
+<path d="M30 64c7-8 17-12 29-12 17 0 28 9 28 20 0 10-8 17-20 17-12 0-22-6-27-15-3-5-3-7-10-10Z" fill="none" stroke="url(#bq2)" strokeWidth="5.5" strokeLinecap="round"/>
+<path d="M58 76l18 12" fill="none" stroke="url(#bq2)" strokeWidth="5.5" strokeLinecap="round"/>
+</svg>
+{!compact&&<div className="brand-wordmark"><strong>BANQUISQUEYA</strong><span>&amp; TRUST</span></div>}
+</div>}
