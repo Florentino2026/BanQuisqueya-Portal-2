@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
+import { canReviewKyc } from '@/lib/auth/roles'
 
 const statusLabels: Record<string, string> = {
   pending: 'Pendiente',
@@ -22,7 +23,7 @@ export default async function AdminInvestors({
   if (!userId) redirect('/login')
 
   const { data: profile } = await supabase.from('profiles').select('role').eq('id', userId).maybeSingle()
-  if (profile?.role !== 'admin') redirect('/investor')
+  if (!canReviewKyc(profile?.role)) redirect('/investor')
 
   let query = supabase
     .from('investors')
