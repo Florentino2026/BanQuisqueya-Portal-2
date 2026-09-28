@@ -8,7 +8,21 @@ export default async function Admin() {
   const userId = claimsData?.claims?.sub as string | undefined
   const { data: p } = await s.from('profiles').select('role').eq('id', userId || '').maybeSingle()
 
-  if (p?.role !== 'admin') redirect('/investor')
+  if (p?.role !== 'admin') {
+    return (
+      <div className="dashboard">
+        <div className="container">
+          <div className="card">
+            <h1>Acceso administrativo</h1>
+            <p>La cuenta está autenticada, pero el portal todavía no reconoce esta sesión como administrador.</p>
+            <p className="muted">Usuario autenticado: {userId || 'no identificado'}</p>
+            <p className="muted">Rol leído desde profiles: {p?.role || 'no disponible'}</p>
+            <Link href="/investor" className="button">Volver al portal del inversionista</Link>
+          </div>
+        </div>
+      </div>
+    )
+  }
 
   const [{ count: investors }, { count: projects }, { count: kycInReview }] = await Promise.all([
     s.from('investors').select('*', { count: 'exact', head: true }),
