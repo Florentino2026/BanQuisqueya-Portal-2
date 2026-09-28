@@ -1,6 +1,10 @@
 import Link from 'next/link'
 import BrandLogo from '@/components/BrandLogo'
 import { createClient } from '@/lib/supabase/server'
+import heroPart1 from '@/lib/hero-image-mini/part1'
+import heroPart2 from '@/lib/hero-image-mini/part2'
+
+const heroImage = `data:image/webp;base64,${heroPart1}${heroPart2}`
 
 export default async function Home(){
  const supabase=await createClient()
@@ -11,12 +15,14 @@ export default async function Home(){
    <nav style={{display:'flex',gap:10,alignItems:'center'}}><a className="muted" href="#oportunidades">Oportunidades</a><a className="muted" href="#areas">Sectores</a><a className="muted" href="#soluciones">Soluciones</a><a className="muted" href="#contacto">Contacto</a><Link className="btn secondary" href="/login">Acceso Inversionistas</Link></nav>
   </div></header>
   <main>
-   <section className="hero"><div className="container">
-    <div className="hero-brand"><span className="hero-kicker">Fondo de Inversión Privado</span></div>
-    <h1>Capital privado para proyectos con visión de largo plazo.</h1>
-    <p>BanQuisqueya &amp; Trust estructura, gestiona y acompaña oportunidades de inversión privada en América Latina y el Caribe, conectando capital con proyectos que requieren una gestión profesional, disciplina financiera y control de riesgos.</p>
-    <div className="hero-actions"><Link className="btn primary" href="/register">Solicitar acceso</Link><a className="btn secondary" href="mailto:info@banquisqueya.com?subject=Presentar%20un%20proyecto">Presentar un Proyecto</a></div>
-   </div></section>
+   <section className="hero hero-image" style={{backgroundImage:`linear-gradient(90deg,rgba(7,23,45,.84) 0%,rgba(7,23,45,.38) 42%,rgba(7,23,45,.08) 72%,rgba(7,23,45,.18) 100%),url("${heroImage}")`}}>
+    <div className="container hero-image-content">
+      <span className="hero-kicker">Fondo de Inversión Privado</span>
+      <h1>Capital para un mejor mañana.</h1>
+      <p>Proyectos estratégicos · América Latina y el Caribe</p>
+      <div className="hero-actions"><Link className="btn primary" href="/register">Solicitar acceso</Link><a className="btn secondary" href="mailto:info@banquisqueya.com?subject=Presentar%20un%20proyecto">Presentar un Proyecto</a><Link className="btn ghost-light" href="/login">Acceso Inversionistas</Link></div>
+    </div>
+   </section>
    <section className="section" id="areas"><div className="container"><div className="section-title"><span className="pill">Áreas de inversión y gestión</span><h2>Sectores donde gestionamos capital</h2><p className="muted">BanQuisqueya &amp; Trust evalúa, estructura y gestiona oportunidades de inversión privada en sectores estratégicos.</p></div><div className="sector-grid"><div className="sector-card" key="Energía & Minas"><span className="sector-number">01</span><h3>Energía & Minas</h3><p className="muted">Energía renovable, generación, transmisión, minería y proyectos de recursos naturales.</p></div><div className="sector-card" key="Infraestructura"><span className="sector-number">02</span><h3>Infraestructura</h3><p className="muted">Infraestructura pública y privada, transporte, logística, agua y servicios esenciales.</p></div><div className="sector-card" key="Salud & Bienestar"><span className="sector-number">03</span><h3>Salud & Bienestar</h3><p className="muted">Hospitales, clínicas, centros especializados, tecnología médica y servicios de bienestar.</p></div><div className="sector-card" key="Turismo & Hospitality"><span className="sector-number">04</span><h3>Turismo & Hospitality</h3><p className="muted">Hoteles, resorts, marinas, desarrollos turísticos y proyectos inmobiliarios vinculados al turismo.</p></div><div className="sector-card" key="Desarrollo Urbano & Real Estate"><span className="sector-number">05</span><h3>Desarrollo Urbano & Real Estate</h3><p className="muted">Vivienda, usos mixtos, comunidades planificadas y desarrollos inmobiliarios.</p></div><div className="sector-card" key="Agroindustria"><span className="sector-number">06</span><h3>Agroindustria</h3><p className="muted">Producción, procesamiento, almacenamiento, logística y cadenas de valor agroindustriales.</p></div><div className="sector-card" key="Parques Industriales"><span className="sector-number">07</span><h3>Parques Industriales</h3><p className="muted">Plataformas industriales, manufactura, logística y centros de distribución.</p></div><div className="sector-card" key="Tecnología & Innovación"><span className="sector-number">08</span><h3>Tecnología & Innovación</h3><p className="muted">Tecnología financiera, transformación digital, infraestructura tecnológica y modelos innovadores.</p></div><div className="sector-card" key="Alianzas Público-Privadas"><span className="sector-number">09</span><h3>Alianzas Público-Privadas</h3><p className="muted">Estructuración y gestión de proyectos mediante esquemas público-privados.</p></div><div className="sector-card" key="Automotriz & Movilidad"><span className="sector-number">10</span><h3>Automotriz & Movilidad</h3><p className="muted">Manufactura, distribución, infraestructura de movilidad y servicios relacionados.</p></div></div></div></section><section className="section" id="soluciones"><div className="container"><div className="section-title"><span className="pill">Plataforma institucional</span><h2>Gestión integral de capital y proyectos</h2><p className="muted">Un ecosistema para inversionistas, desarrolladores, suplidores y equipos corporativos, desde la evaluación inicial hasta la ejecución y seguimiento.</p></div><div className="grid">
     {['Inversión privada','Estructuración financiera','Due Diligence','Gestión de proyectos','Procurement y contratos','Supervisión y desembolsos'].map((x,i)=><div className="card" key={x}><div className="pill">0{i+1}</div><h3>{x}</h3><p className="muted">{['Acceso organizado a oportunidades seleccionadas y procesos de inversión.','Estructuración y gestión de capital de acuerdo con las necesidades del proyecto.','Evaluación documental, financiera, legal, técnica y de riesgos.','Control de presupuesto, contratos, avances, cubicaciones y cumplimiento.','Gestión de cotizaciones, suplidores, órdenes de compra y contratos.','Validación de avances y flujo de aprobación antes de cada desembolso.'][i]}</p></div>)}
    </div></div></section>
