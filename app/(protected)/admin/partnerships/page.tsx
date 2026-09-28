@@ -1,0 +1,21 @@
+import Link from 'next/link'
+import { createClient } from '@/lib/supabase/server'
+import { redirect } from 'next/navigation'
+import { canReviewKyc } from '@/lib/auth/roles'
+
+const labels:Record<string,string>={financing:'Financiamiento',joint_venture:'Joint Venture',project_development:'Project Development',strategic_partnership:'Alianza estratégica',ppp:'PPP',debt_financing:'Deuda',equity_investment:'Equity',co_investment:'Co-inversión',acquisition_development:'Adquisición y desarrollo',refinancing:'Refinanciamiento'}
+const statusLabels:Record<string,string>={structuring:'Estructuración',term_sheet:'Term Sheet',due_diligence:'Due Diligence',investment_committee:'Comité de inversión',approved:'Aprobada',contracting:'Contratación',active:'Activa',completed:'Completada',rejected:'Rechazada',withdrawn:'Retirada'}
+
+export default async function Partnerships(){
+ const s=await createClient()
+ const {data:c}=await s.auth.getClaims();const uid=c?.claims?.sub as string|undefined
+ if(!uid)redirect('/login')
+ const {data:p}=await s.from('profiles').select('role').eq('id',uid).maybeSingle()
+ if(!canReviewKyc(p?.role))redirect('/investor')
+ const {data:apps}=await s.from('funding_applications').select('id,application_number,project_name,sector,country,requested_amount,currency,engagement_type,sponsor_contribution_value,land_contribution_value,status,created_at').in('engagement_type',['joint_venture','project_development','strategic_partnership','ppp','co_investment','acquisition_development']).order('created_at',{ascending:false})
+ return <div className="dashboard"><div className="container dashboard-wide">
+  <div className="dashboard-heading"><div><span className="eyebrow">BANQUISQUEYA & TRUST · CAPITAL & DEVELOPMENT</span><h1>Joint Ventures y desarrollo</h1><p className="muted">Oportunidades donde BanQuisqueya puede aportar capital, estructuración, administración y desarrollo.</p></div><Link href="/admin/applications" className="btn secondary">Ver todas las solicitudes</Link></div>
+  <div className="metric-grid"><div className="metric-card"><span className="metric-icon">JV</span><div><div className="metric-label">Oportunidades</div><div className="metric-value">{apps?.length||0}</div><div className="metric-caption">JV, PPP y alianzas</div></div></div><div className="metric-card"><span className="metric-icon">BQ</span><div><div className="metric-label">Modelo</div><div className="metric-value metric-text">Capital + Develop</div><div className="metric-caption">Estructuración y gestión</div></div></div><div className="metric-card"><span className="metric-icon">SPV</span><div><div className="metric-label">Siguiente etapa</div><div className="metric-value metric-text">Term Sheet</div><div className="metric-caption">Luego de Due Diligence</div></div></div></div>
+  <section className="panel"><div className="panel-heading"><div><h2>Pipeline de oportunidades</h2><p className="muted">Proyectos que pueden convertirse en asociaciones con BanQuisqueya.</p></div></div>{!apps?.length?<div className="empty-state">Aún no hay oportunidades de Joint Venture o desarrollo.</div>:<div className="table-wrap"><table className="table professional-table"><thead><tr><th>Solicitud</th><th>Proyecto</th><th>Modelo</th><th>País</th><th>Valor sponsor/terreno</th><th>Monto</th><th>Estado</th><th></th></tr></thead><tbody>{apps.map(x=><tr key={x.id}><td><strong>{x.application_number}</strong></td><td>{x.project_name}<div className="muted">{x.sector||'—'}</div></td><td>{labels[x.engagement_type]||x.engagement_type}</td><td>{x.country||'—'}</td><td>{Number(x.land_contribution_value||x.sponsor_contribution_value||0).toLocaleString('en-US',{style:'currency',currency:x.currency||'USD',maximumFractionDigits:0})}</td><td>{x.requested_amount?x.currency+' '+Number(x.requested_amount).toLocaleString('en-US'):'—'}</td><td><span className="status-chip">{statusLabels[x.status]||x.status}</span></td><td><Link href={'/admin/applications/'+x.id} className="text-link">Abrir →</Link></td></tr>)}</tbody></table></div>}</section>
+ </div></div>
+}
