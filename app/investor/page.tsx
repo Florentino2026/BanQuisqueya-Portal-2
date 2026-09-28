@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import { signOut } from './actions'
+import { isStaffRole, ROLE_LABELS } from '@/lib/auth/roles'
 
 export default async function InvestorDashboard() {
   const supabase = await createClient()
@@ -21,7 +22,7 @@ export default async function InvestorDashboard() {
   return <>
     <header className="nav">
       <div className="container" style={{width:'100%',display:'flex',justifyContent:'space-between',alignItems:'center'}}>
-        <div className="brand">BanQuisqueya <span>& Trust</span></div>
+        <div className="brand">BanQuisqueya <span>& Trust</span></div><div style={{display:'flex',gap:8,alignItems:'center'}}>{isStaffRole(profile?.role) && <Link className="btn secondary" href="/admin">Panel de administración · {ROLE_LABELS[profile!.role as keyof typeof ROLE_LABELS]}</Link>}</div>
         <form action={signOut}><button className="btn secondary" type="submit">Cerrar sesión</button></form>
       </div>
     </header>
