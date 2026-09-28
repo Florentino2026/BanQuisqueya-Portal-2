@@ -105,7 +105,7 @@ export async function reviewKyc(formData: FormData) {
 }
 
 export async function updateDocumentReview(formData: FormData) {
-  const { supabase, userId } = await requireAdmin()
+  const { supabase, userId } = await requireKycReviewer()
 
   const documentId = String(formData.get('document_id') || '')
   const investorId = String(formData.get('investor_id') || '')
