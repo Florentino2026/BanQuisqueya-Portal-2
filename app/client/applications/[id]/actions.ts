@@ -7,6 +7,7 @@ import { createClient } from '@/lib/supabase/server'
 export async function acceptClosingDocument(f:FormData){
  const application_id=String(f.get('application_id'))
  const delivery_id=String(f.get('delivery_id'))
+ if(f.get('accept_terms')!=='yes')throw new Error('Debes confirmar la aceptación del documento.')
  const s=await createClient()
  const {data:{user}}=await s.auth.getUser()
  if(!user)redirect('/login')
