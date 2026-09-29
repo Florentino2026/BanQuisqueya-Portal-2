@@ -1,9 +1,60 @@
 'use server'
+
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import { isStaffRole } from '@/lib/auth/roles'
-async function staff(){const s=await createClient();const {data:c}=await s.auth.getClaims();const uid=c?.claims?.sub as string|undefined;if(!uid)redirect('/login');const {data:p}=await s.from('profiles').select('role').eq('id',uid).maybeSingle();if(!isStaffRole(p?.role))redirect('/admin');return{s,uid}}
-const num=(v:FormDataEntryValue|null)=>{const n=Number(v);return v===null||v===''?0:(Number.isFinite(n)?n:0)}
-export async function saveMilestone(f:FormData){const{s,uid}=await staff();const project_id=String(f.get('project_id'));const{error}=await s.from('project_execution_milestones').insert({project_id,application_id:f.get('application_id')||null,name:String(f.get('name')),category:String(f.get('category')||'general'),planned_date:f.get('planned_date')||null,progress_pct:num(f.get('progress_pct')),status:String(f.get('status')||'pending'),notes:String(f.get('notes')||''),created_by:uid});if(error)throw new Error(error.message);revalidatePath('/admin/projects/'+project_id)}
-export async function saveExecutionUpdate(f:FormData){const{s,uid}=await staff();const project_id=String(f.get('project_id'));const{error}=await s.from('project_execution_updates').insert({project_id,report_date:f.get('report_date')||new Date().toISOString().slice(0,10),physical_progress_pct:f.get('physical_progress_pct')===''?null:num(f.get('physical_progress_pct')),financial_progress_pct:f.get('financial_progress_pct')===''?null:num(f.get('financial_progress_pct')),amount_spent:num(f.get('amount_spent')),amount_committed:num(f.get('amount_committed')),currency:String(f.get('currency')||'USD').slice(0,3).toUpperCase()),summary:String(f.get('summary')||''),risks:String(f.get('risks')||''),decisions_required:String(f.get('decisions_required')||''),created_by:uid});if(error)throw new Error(error.message);revalidatePath('/admin/projects/'+project_id)}
+
+async function staff() {
+  const s = await createClient()
+  const { data: c } = await s.auth.getClaims()
+  const uid = c?.claims?.sub as string | undefined
+  if (!uid) redirect('/login')
+  const { data: p } = await s.from('profiles').select('role').eq('id', uid).maybeSingle()
+  if (!isStaffRole(p?.role)) redirect('/admin')
+  return { s, uid }
+}
+
+function num(v: FormDataEntryValue | null) {
+  if (v === null || v === '') return 0
+  const n = Number(v)
+  return Number.isFinite(n) ? n : 0
+}
+
+export async function saveMilestone(f: FormData) {
+  const { s, uid } = await staff()
+  const project_id = String(f.get('project_id'))
+  const { error } = await s.from('project_execution_milestones').insert({
+    project_id,
+    application_id: f.get('application_id') || null,
+    name: String(f.get('name') || ''),
+    category: String(f.get('category') || 'general'),
+    planned_date: f.get('planned_date') || null,
+    progress_pct: num(f.get('progress_pct')),
+    status: String(f.get('status') || 'pending'),
+    notes: String(f.get('notes') || ''),
+    created_by: uid,
+  })
+  if (error) throw new Error(error.message)
+  revalidatePath('/admin/projects/' + project_id)
+}
+
+export async function saveExecutionUpdate(f: FormData) {
+  const { s, uid } = await staff()
+  const project_id = String(f.get('project_id'))
+  const { error } = await s.from('project_execution_updates').insert({
+    project_id,
+    report_date: f.get('report_date') || new Date().toISOString().slice(0, 10),
+    physical_progress_pct: f.get('physical_progress_pct') === '' ? null : num(f.get('physical_progress_pct')),
+    financial_progress_pct: f.get('financial_progress_pct') === '' ? null : num(f.get('financial_progress_pct')),
+    amount_spent: num(f.get('amount_spent')),
+    amount_committed: num(f.get('amount_committed')),
+    currency: String(f.get('currency') || 'USD').slice(0, 3).toUpperCase(),
+    summary: String(f.get('summary') || ''),
+    risks: String(f.get('risks') || ''),
+    decisions_required: String(f.get('decisions_required') || ''),
+    created_by: uid,
+  })
+  if (error) throw new Error(error.message)
+  revalidatePath('/admin/projects/' + project_id)
+}
