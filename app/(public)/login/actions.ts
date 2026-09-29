@@ -24,3 +24,9 @@ export async function loginInvestor(formData: FormData): Promise<void> {
 
   redirect('/investor')
 }
+
+export async function signOut(): Promise<void> {
+  const supabase = await createClient()
+  await supabase.auth.signOut()
+  redirect('/login')
+}
