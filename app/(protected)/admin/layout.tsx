@@ -21,7 +21,7 @@ export default async function AdminLayout({children}:{children:React.ReactNode})
   {['admin','procurement','project_manager','finance','accounting'].includes(role)&&<Link href="/admin/procurement/orders" className="sidebar-link">Órdenes de compra</Link>}
   {['admin','legal','contract_manager','project_manager'].includes(role)&&<Link href="/admin/contracts" className="sidebar-link">Contratos</Link>}
   {cubicacionAccess&&<Link href="/admin/cubicaciones" className="sidebar-link">Cubicaciones y desembolsos</Link>}
-  {['admin','hr','operations_manager','executive'].includes(role)&&<Link href="/admin/careers" className="sidebar-link">Recursos Humanos</Link>}
+  {['admin','hr','operations_manager','executive'].includes(role)&&<Link href="/admin/careers" className="sidebar-link">Recursos Humanos</Link>}\n  {['admin','relationship_manager','finance','executive','cfo','compliance'].includes(role)&&<Link href="/admin/capital-partner-inbox" className="sidebar-link">Capital Desk · Communications</Link>
   <div className="sidebar-section">CONTROL</div><Link href="/admin/audit" className="sidebar-link">Audit & Compliance</Link><Link href="/admin/compliance" className="sidebar-link">Compliance Control Center</Link><Link href="/admin/organization" className="sidebar-link">Estructura corporativa</Link>
   {(role==='admin'||role==='compliance'||role==='kyc_reviewer')&&<Link href="/admin/investors" className="sidebar-link">Inversionistas / KYC</Link>}
   {role==='admin'&&<Link href="/admin/staff" className="sidebar-link">Staff y roles</Link>}
