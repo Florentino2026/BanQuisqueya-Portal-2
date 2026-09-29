@@ -24,7 +24,7 @@ export async function prepareClosingPackage(f:FormData){
  const docsByCode=new Map((legalDocs||[]).map(x=>[x.code,x]));
  const base=[
   {type:'nda',code:'NDA',title:'Acuerdo de Confidencialidad — BanQuisqueya & Trust'},
-  {type:'capital_management_authorization',code:'CAPITAL-MGMT',title:'Autorización de Gestión de Capitales — BanQuisqueya & Trust'},
+  {type:'management_authorization',code:'CAPITAL-MGMT',title:'Autorización de Gestión de Capitales — BanQuisqueya & Trust'},
   {type:'term_sheet',code:'TERM-SHEET',title:'Hoja de Términos — BanQuisqueya & Trust'}
  ];
  const termText=term?[
