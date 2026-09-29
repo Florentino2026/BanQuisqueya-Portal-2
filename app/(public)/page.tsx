@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import BrandLogo from '@/components/BrandLogo'
+import ProjectVideoCarousel from '@/components/ProjectVideoCarousel'
 
 const sectors=[
  ['01','Energy & Natural Resources','Renewable energy, generation, mining and strategic resource projects.'],
@@ -60,6 +61,8 @@ export default function Home(){
     </div>
     <div className="container bq-capability-grid">{capabilities.map(([n,t,d])=><article className="bq-capability" key={n}><span>{n}</span><h3>{t}</h3><p>{d}</p><div className="bq-arrow">↗</div></article>)}</div>
    </section>
+
+   <ProjectVideoCarousel />
 
    <section className="bq-dark-section" id="process">
     <div className="container">
