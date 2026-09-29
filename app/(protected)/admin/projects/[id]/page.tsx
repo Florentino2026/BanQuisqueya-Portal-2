@@ -6,9 +6,10 @@ import { saveMilestone, saveExecutionUpdate } from './execution-actions'
 
 export default async function ProjectDetail({params}:{params:Promise<{id:string}>}){
  const {id}=await params; const s=await createClient()
- const [{data:p},{data:dash},{data:milestones},{data:updates},{data:exec}]=await Promise.all([
+ const [{data:p},{data:dash},{data:fin},{data:milestones},{data:updates},{data:exec}]=await Promise.all([
   s.from('projects').select('*').eq('id',id).maybeSingle(),
   s.from('project_execution_dashboard').select('*').eq('project_id',id).maybeSingle(),
+  s.from('project_execution_financial_dashboard').select('*').eq('project_id',id).maybeSingle(),
   s.from('project_execution_milestones').select('*').eq('project_id',id).order('planned_date',{ascending:true}),
   s.from('project_execution_updates').select('*').eq('project_id',id).order('report_date',{ascending:false}).limit(10),
   s.from('project_execution_controls').select('*').eq('project_id',id).maybeSingle()
@@ -24,6 +25,7 @@ export default async function ProjectDetail({params}:{params:Promise<{id:string}
    <div className="metric-card"><div className="metric-label">Financiado</div><div className="metric-value">{money(dash.funded)}</div></div>
    <div className="metric-card"><div className="metric-label">Funding gap</div><div className="metric-value">{money(dash.funding_gap)}</div></div>
   </div>}
+  {fin&&<div className="metric-grid" style={{marginTop:20}}><div className="metric-card"><div className="metric-label">Órdenes de compra</div><div className="metric-value">{fin.purchase_order_count}</div><div className="metric-caption">{money(fin.purchase_order_value)}</div></div><div className="metric-card"><div className="metric-label">Cubicaciones aprobadas</div><div className="metric-value">{fin.approved_cubicaciones}</div><div className="metric-caption">{money(fin.approved_cubicacion_value)}</div></div><div className="metric-card"><div className="metric-label">Desembolsos pagados</div><div className="metric-value">{fin.paid_disbursements}</div><div className="metric-caption">{money(fin.paid_value)}</div></div><div className="metric-card"><div className="metric-label">Disponible presupuesto</div><div className="metric-value">{money(fin.remaining_budget)}</div></div></div>}
   <div className="dashboard-columns" style={{marginTop:20}}>
    <section className="panel"><div className="panel-heading"><div><div className="eyebrow">Ejecución</div><h2>Avance del proyecto</h2></div></div>
     <div className="pipeline-list"><div className="pipeline-track"><span style={{width:(dash?.physical_progress||0)+'%'}}/></div><strong>Avance físico: {Number(dash?.physical_progress||0).toFixed(1)}%</strong><div className="pipeline-track"><span style={{width:(dash?.financial_progress||0)+'%'}}/></div><strong>Avance financiero: {Number(dash?.financial_progress||0).toFixed(1)}%</strong></div>
