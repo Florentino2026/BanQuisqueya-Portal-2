@@ -9,7 +9,7 @@ import { refreshMatches, updateMatch } from '../../capital-matching/actions'
 
 export default async function ProjectDetail({params}:{params:Promise<{id:string}>}){
  const {id}=await params; const s=await createClient()
- const [{data:p},{data:dash},{data:fin},{data:milestones},{data:updates},{data:exec},{data:risks},{data:issues},{data:decisions},{data:documents}]=await Promise.all([
+ const [{data:p},{data:dash},{data:fin},{data:milestones},{data:updates},{data:exec},{data:risks},{data:issues},{data:decisions},{data:documents},{data:matches}]=await Promise.all([
   s.from('projects').select('*').eq('id',id).maybeSingle(),
   s.from('project_execution_dashboard').select('*').eq('project_id',id).maybeSingle(),
   s.from('project_execution_financial_dashboard').select('*').eq('project_id',id).maybeSingle(),
@@ -24,7 +24,7 @@ export default async function ProjectDetail({params}:{params:Promise<{id:string}
  ])
  if(!p)notFound()
  const money=(n:number)=>'USD '+Number(n||0).toLocaleString('en-US',{maximumFractionDigits:0})
- const matches:any[]=((await s.from('capital_matching_dashboard').select('*').eq('project_id',id).order('match_score',{ascending:false})).data||[])
+
  return <div className="dashboard"><div className="container">
   <Link href="/admin/projects">← Proyectos</Link>
   <div style={{margin:'16px 0 24px'}}><div className="muted">Ficha y Command Center</div><h1>{p.name}</h1><p className="muted">{p.sector} · {p.location||'Ubicación no definida'} · {p.status}</p></div>
