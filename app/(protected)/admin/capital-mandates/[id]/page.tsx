@@ -19,7 +19,7 @@ export default async function MandateDetail({params}:{params:Promise<{id:string}
    <div className="metric-card"><span className="metric-label">Instrumento</span><strong className="metric-value" style={{fontSize:18}}>{m.target_instrument||'—'}</strong></div>
    <div className="metric-card"><span className="metric-label">Documentos</span><strong className="metric-value">{(d||[]).length}</strong></div>
   </section>
-  <div className="dashboard-columns" style={{marginTop:20}}>
+  <section className="panel" style={{marginTop:20}}><h2>Capital Process</h2><div className="pipeline-track"><span>Matching</span><span>Mandate</span><span>Data Room</span><span>Due Diligence</span><span>Proposal / Term Sheet</span><span>Closing</span></div><p className="muted" style={{marginTop:12}}>La transición de estados está controlada por reglas de due diligence, Transaction Room y documentación contractual.</p></section><div className="dashboard-columns" style={{marginTop:20}}>
    <section className="panel"><h2>Mandate Terms</h2><form action={updateMandate} className="form"><input type="hidden" name="id" value={id}/><div className="grid">
     <label>Status<select name="status" defaultValue={m.status}>{['draft','proposed','nda','data_room','due_diligence','proposal','term_sheet','approved','declined','closed','expired'].map(x=><option key={x}>{x}</option>)}</select></label>
     <label>Mandate Type<select name="mandate_type" defaultValue={m.mandate_type}>{['capital_introduction','fundraising','debt_arrangement','equity_placement','co_investment','strategic_capital','other'].map(x=><option key={x}>{x}</option>)}</select></label>
