@@ -4,9 +4,9 @@ import { updateMandate, updateRoom } from '../actions'
 export default async function MandateDetail({params}:{params:Promise<{id:string}>}){
  const {id}=await params
  const s=await createClient()
- const [{data:m},{data:r},{data:d},{data:a}]=await Promise.all([
-  s.from('capital_mandates').select('*').eq('id',id).maybeSingle(),
-  s.from('capital_transaction_rooms').select('*').eq('mandate_id',id).maybeSingle(),
+ const {data:m}=await s.from('capital_mandates').select('*').eq('id',id).maybeSingle()
+ const {data:r}=await s.from('capital_transaction_rooms').select('*').eq('mandate_id',id).maybeSingle()
+ const [{data:d},{data:a}]=await Promise.all([
   s.from('capital_room_documents').select('*').eq('room_id',r?.id||'').order('created_at',{ascending:false}),
   s.from('capital_room_access').select('*').eq('room_id',r?.id||'').order('invited_at',{ascending:false})
  ])
