@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import BrandLogo from '@/components/BrandLogo'
+import LanguageSwitcher from '@/components/LanguageSwitcher'
 
 const sectors=[
   ['01','ENERGY','Renewables · Generation · Natural resources'],
@@ -36,7 +37,7 @@ export default function Home(){
     <nav className="bq-nav-links">
       <a href="#platform">Platform</a><a href="#approach">Approach</a><a href="#sectors">Sectors</a><a href="#process">Process</a><a href="#contact">Contact</a>
     </nav>
-    <div className="bq-nav-actions"><Link href="/login" className="bq-nav-login">Institutional Access</Link><Link href="/register" className="btn primary">Present a Project</Link></div>
+    <div className="bq-nav-actions"><LanguageSwitcher/><Link href="/login" className="bq-nav-login">Institutional Access</Link><Link href="/register" className="btn primary">Present a Project</Link></div>
    </div>
   </header>
 
