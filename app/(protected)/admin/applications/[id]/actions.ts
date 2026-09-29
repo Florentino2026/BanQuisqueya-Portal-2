@@ -48,3 +48,21 @@ export async function addCapitalTranche(f:FormData){
  if(error) throw new Error(error.message)
  revalidatePath('/admin/applications/'+application_id)
 }
+export async function updateApplication(f:FormData){
+ const {s,role}=await staff()
+ const id=String(f.get('id'))
+ const status=String(f.get('status')||'')
+ const assigned_to=f.get('assigned_to')?String(f.get('assigned_to')):null
+ if(status==='funded'){
+  if(!['admin','finance','cfo','executive'].includes(role))throw new Error('Solo Finanzas/CFO/Ejecutivo/Admin puede cerrar como financiada.')
+  const {data:close}=await s.from('financial_close_summaries').select('status').eq('application_id',id).maybeSingle()
+  if(close?.status!=='closed')throw new Error('Financial Close debe estar cerrado antes de marcar la operación como financiada.')
+ }
+ const payload:any={updated_at:new Date().toISOString()}
+ if(status)payload.status=status
+ if(f.get('assigned_to')!==null)payload.assigned_to=assigned_to
+ const {error}=await s.from('funding_applications').update(payload).eq('id',id)
+ if(error)throw new Error(error.message)
+ revalidatePath('/admin/applications/'+id)
+ revalidatePath('/admin/applications')
+}
