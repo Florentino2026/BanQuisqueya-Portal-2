@@ -28,7 +28,7 @@ export async function prepareClosingPackage(f:FormData){
   {type:'term_sheet',code:'TERM-SHEET',title:'Hoja de Términos — BanQuisqueya & Trust'}
  ];
  const termText=term?[
-  'BANQUISQUEYA & TRUST',
+  'BanQuisqueya & Trust',
   'HOJA DE TÉRMINOS PRELIMINAR',
   '',
   'Proyecto: '+a.project_name,
@@ -52,8 +52,8 @@ export async function prepareClosingPackage(f:FormData){
   'BanQuisqueya & Trust'
  ].join('\n'):'La Hoja de Términos será emitida después de completar la estructuración correspondiente.';
  const contents:any={
-  nda:'BANQUISQUEYA & TRUST\nACUERDO DE CONFIDENCIALIDAD\n\nEntre BanQuisqueya & Trust y la contraparte identificada en el expediente del proyecto '+a.project_name+'.\n\nObjeto: proteger la información confidencial intercambiada para la evaluación, estructuración y eventual desarrollo de la oportunidad.\n\nLa versión definitiva y las obligaciones vinculantes deberán ser revisadas y aprobadas por el área legal correspondiente antes de su ejecución.\n\nBanQuisqueya & Trust',
-  capital_management_authorization:'BANQUISQUEYA & TRUST\nAUTORIZACIÓN DE GESTIÓN DE CAPITALES\n\nContraparte: '+(client.legal_name||client.contact_name||'—')+'\nProyecto: '+a.project_name+'\n\nEl presente documento registra el alcance preliminar de la autorización para que BanQuisqueya & Trust gestione, estructure y coordine fuentes de capital relacionadas con el proyecto, sujeto a due diligence, aprobaciones internas, cumplimiento normativo y acuerdos definitivos.\n\nNo constituye por sí solo una garantía de financiación, captación de depósitos, promesa de rendimiento ni compromiso irrevocable.\n\nBanQuisqueya & Trust',
+  nda:'BanQuisqueya & Trust\nACUERDO DE CONFIDENCIALIDAD\n\nEntre BanQuisqueya & Trust y la contraparte identificada en el expediente del proyecto '+a.project_name+'.\n\nObjeto: proteger la información confidencial intercambiada para la evaluación, estructuración y eventual desarrollo de la oportunidad.\n\nLa versión definitiva y las obligaciones vinculantes deberán ser revisadas y aprobadas por el área legal correspondiente antes de su ejecución.\n\nBanQuisqueya & Trust',
+  capital_management_authorization:'BanQuisqueya & Trust\nAUTORIZACIÓN DE GESTIÓN DE CAPITALES\n\nContraparte: '+(client.legal_name||client.contact_name||'—')+'\nProyecto: '+a.project_name+'\n\nEl presente documento registra el alcance preliminar de la autorización para que BanQuisqueya & Trust gestione, estructure y coordine fuentes de capital relacionadas con el proyecto, sujeto a due diligence, aprobaciones internas, cumplimiento normativo y acuerdos definitivos.\n\nNo constituye por sí solo una garantía de financiación, captación de depósitos, promesa de rendimiento ni compromiso irrevocable.\n\nBanQuisqueya & Trust',
   term_sheet:termText
  };
  for(const d of base){
