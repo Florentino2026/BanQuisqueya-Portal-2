@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { BrandLogo } from '@/components/BrandLogo'
+import BrandLogo from '@/components/BrandLogo'
 import { redirect, notFound } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import { acceptClosingDocument, markClosingDocumentViewed } from './actions'
