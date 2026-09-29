@@ -5,7 +5,7 @@ import { updateProject } from '../actions'
 import { saveMilestone, saveExecutionUpdate } from './execution-actions'
 import { saveRisk, saveIssue, saveDecision } from './pmo-actions'
 import { registerDocument } from './document-actions'
-import { refreshMatches, updateMatch } from '../../../capital-matching/actions'
+import { refreshMatches, updateMatch } from '../../capital-matching/actions'
 import CapitalCommunications from './capital-communications'
 
 export default async function ProjectDetail({params}:{params:Promise<{id:string}>}){
