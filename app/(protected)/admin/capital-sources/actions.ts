@@ -1,0 +1,8 @@
+'use server'
+import { revalidatePath } from 'next/cache'
+import { redirect } from 'next/navigation'
+import { createClient } from '@/lib/supabase/server'
+import { isStaffRole } from '@/lib/auth/roles'
+async function staff(){const s=await createClient();const {data:c}=await s.auth.getClaims();const uid=c?.claims?.sub as string|undefined;if(!uid)redirect('/login');const {data:p}=await s.from('profiles').select('role').eq('id',uid).maybeSingle();if(!isStaffRole(p?.role))redirect('/admin');return {s,uid}}
+export async function createCapitalSource(f:FormData){const {s,uid}=await staff();const {error}=await s.from('capital_sources').insert({name:String(f.get('name')||''),source_type:String(f.get('source_type')||'private_capital'),jurisdiction:String(f.get('jurisdiction')||''),contact:String(f.get('contact')||''),status:String(f.get('status')||'prospect'),notes:String(f.get('notes')||''),created_by:uid});if(error)throw new Error(error.message);revalidatePath('/admin/capital-sources')}
+export async function updateCapitalSource(f:FormData){const {s}=await staff();const id=String(f.get('id'));const {error}=await s.from('capital_sources').update({name:String(f.get('name')||''),source_type:String(f.get('source_type')||'private_capital'),jurisdiction:String(f.get('jurisdiction')||''),contact:String(f.get('contact')||''),status:String(f.get('status')||'prospect'),notes:String(f.get('notes')||'')}).eq('id',id);if(error)throw new Error(error.message);revalidatePath('/admin/capital-sources')}
