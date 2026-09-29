@@ -1,0 +1,8 @@
+'use server'
+import {revalidatePath} from 'next/cache'
+import {redirect} from 'next/navigation'
+import {createClient} from '@/lib/supabase/server'
+import {isStaffRole} from '@/lib/auth/roles'
+async function staff(){const s=await createClient();const{data:c}=await s.auth.getClaims();const uid=c?.claims?.sub as string|undefined;if(!uid)redirect('/login');const{data:p}=await s.from('profiles').select('role').eq('id',uid).maybeSingle();if(!isStaffRole(p?.role)||!['admin','finance','cfo','treasury','accounting','executive'].includes(p.role))redirect('/admin');return{s,uid}}
+export async function initializeFirstDisbursement(f:FormData){const{s}=await staff();const application_id=String(f.get('application_id'));const{error}=await s.rpc('initialize_first_disbursement_conditions',{p_application_id:application_id});if(error)throw new Error(error.message);revalidatePath('/admin/applications/'+application_id)}
+export async function updateFirstDisbursementCondition(f:FormData){const{s,uid}=await staff();const id=String(f.get('id'));const application_id=String(f.get('application_id'));const status=String(f.get('status'));if(!['pending','verified','waived','blocked'].includes(status))throw new Error('Invalid condition status');const{error}=await s.from('first_disbursement_conditions').update({status,evidence_note:String(f.get('evidence_note')||'')||null,verified_by:['verified','waived'].includes(status)?uid:null,verified_at:['verified','waived'].includes(status)?new Date().toISOString():null}).eq('id',id);if(error)throw new Error(error.message);revalidatePath('/admin/applications/'+application_id)}
