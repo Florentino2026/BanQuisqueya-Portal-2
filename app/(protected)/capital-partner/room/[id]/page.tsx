@@ -1,0 +1,21 @@
+import { createClient } from '@/lib/supabase/server'
+export default async function PartnerRoom({params}:{params:Promise<{id:string}>}){
+ const {id}=await params;const s=await createClient();const{data:u}=await s.auth.getUser();if(!u.user)return null
+ const{data:p}=await s.from('capital_partner_profiles').select('id,organization_name,display_name,portal_status,onboarding_status').eq('user_id',u.user.id).maybeSingle()
+ if(!p||p.portal_status!=='active'||p.onboarding_status!=='approved')return <main className="dashboard-wide"><section className="panel"><h1>Access restricted</h1></section></main>
+ const{data:a}=await s.from('capital_partner_room_access').select('access_level,status').eq('room_id',id).eq('partner_id',p.id).maybeSingle()
+ if(!a||!['active','invited'].includes(a.status))return <main className="dashboard-wide"><section className="panel"><h1>Transaction Room</h1><p className="muted">No tiene acceso autorizado a esta sala.</p></section></main>
+ const{data:r}=await s.from('capital_transaction_rooms').select('id,project_id,mandate_id,room_name,status,confidentiality_notice').eq('id',id).maybeSingle()
+ if(!r||r.status==='closed')return <main className="dashboard-wide"><section className="panel"><h1>Transaction Room</h1><p className="muted">La sala no está disponible.</p></section></main>
+ const[{data:docs},{data:mandate},{data:project}]=await Promise.all([
+  s.from('capital_room_documents').select('id,document_type,title,description,status,version,confidentiality,expiry_date').eq('room_id',id).in('status',['approved','shared','published']).order('created_at',{ascending:false}),
+  s.from('capital_mandates').select('status,target_amount,currency,target_instrument,mandate_scope').eq('id',r.mandate_id).maybeSingle(),
+  s.from('projects').select('name,sector,location,description').eq('id',r.project_id).maybeSingle()
+ ])
+ return <main className="dashboard-wide"><div className="dashboard-heading"><div><div className="eyebrow">Capital Partner · Secure Transaction Room</div><h1>{r.room_name}</h1><p className="muted">{project?.name||'Project'} · Authorized access: {a.access_level}</p></div><a className="btn secondary" href="/capital-partner">← Back to opportunities</a></div>
+ <section className="metric-grid"><div className="metric-card"><span className="metric-label">Mandate</span><strong className="metric-value" style={{fontSize:18}}>{mandate?.status||'—'}</strong></div><div className="metric-card"><span className="metric-label">Target</span><strong className="metric-value">{Number(mandate?.target_amount||0).toLocaleString()} {mandate?.currency||''}</strong></div><div className="metric-card"><span className="metric-label">Instrument</span><strong className="metric-value" style={{fontSize:18}}>{mandate?.target_instrument||'—'}</strong></div><div className="metric-card"><span className="metric-label">Documents</span><strong className="metric-value">{(docs||[]).length}</strong></div></section>
+ <section className="panel" style={{marginTop:20}}><h2>Project Overview</h2><p>{project?.description||'Information shared by BanQuisqueya & Trust.'}</p><p className="muted">{project?.sector||'—'} · {project?.location||'—'}</p>{r.confidentiality_notice&&<div className="notice-panel" style={{marginTop:14}}><strong>Confidentiality:</strong> {r.confidentiality_notice}</div>}</section>
+ <section className="panel" style={{marginTop:20}}><h2>Shared Documents</h2><div className="table-wrap"><table className="professional-table"><thead><tr><th>Document</th><th>Type</th><th>Version</th><th>Status</th><th>Confidentiality</th><th>Expiry</th></tr></thead><tbody>{(docs||[]).map((d:any)=><tr key={d.id}><td>{d.title}</td><td>{d.document_type}</td><td>{d.version||'—'}</td><td><span className="status-chip">{d.status}</span></td><td>{d.confidentiality||'—'}</td><td>{d.expiry_date||'—'}</td></tr>)}{!(docs||[]).length&&<tr><td colSpan={6}>No shared documents are currently available.</td></tr>}</tbody></table></div></section>
+ <section className="notice-panel" style={{marginTop:20}}><strong>Important:</strong> access to this Transaction Room is limited to information expressly shared with your organization. Information is provided for due diligence and transaction evaluation and does not constitute a financing commitment, guarantee, or offer.</section>
+ </main>
+}
