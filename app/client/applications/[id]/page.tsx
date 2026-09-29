@@ -5,7 +5,7 @@ import { createClient } from '@/lib/supabase/server'
 import { acceptClosingDocument, markClosingDocumentViewed } from './actions'
 
 const statusLabel:Record<string,string>={prepared:'Preparado',ready:'Listo',sent:'Disponible',viewed:'Visto',accepted:'Aceptado',rejected:'Rechazado',expired:'Expirado'}
-const typeLabel:Record<string,string>={nda:'NDA / Confidencialidad',capital_management_authorization:'Autorización de Gestión de Capitales',term_sheet:'Hoja de Términos',jv_agreement:'Acuerdo Joint Venture',development_agreement:'Development Agreement',financing_agreement:'Financing Agreement',ppp_agreement:'PPP Agreement',shareholders_agreement:'Shareholders Agreement',spv_documents:'Documentos SPV',other:'Documento'}
+const typeLabel:Record<string,string>={nda:'NDA / Confidencialidad',management_authorization:'Autorización de Gestión de Capitales',term_sheet:'Hoja de Términos',jv_agreement:'Acuerdo Joint Venture',development_agreement:'Development Agreement',financing_agreement:'Financing Agreement',ppp_agreement:'PPP Agreement',shareholders_agreement:'Shareholders Agreement',spv_documents:'Documentos SPV',other:'Documento'}
 
 export default async function ClientApplicationClosing({params}:{params:Promise<{id:string}>}){
  const {id}=await params
