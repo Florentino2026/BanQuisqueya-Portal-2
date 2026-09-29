@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { BrandLogo } from '@/components/BrandLogo'
 import { redirect, notFound } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import { acceptClosingDocument, markClosingDocumentViewed } from './actions'
@@ -17,7 +18,7 @@ export default async function ClientApplicationClosing({params}:{params:Promise<
  if(!a)notFound()
  const {data:docs}=await s.from('project_document_deliveries').select('id,document_type,title,version,status,content,requires_acceptance,document_version_id,sent_at,accepted_at').eq('application_id',id).eq('client_id',client.id).order('created_at',{ascending:true})
  const pending=(docs||[]).filter(d=>d.requires_acceptance&&d.status!=='accepted').length
- return <div className="investor-portal"><header className="portal-topbar"><Link href="/"><span className="brand">BANQUISQUEYA <span>& TRUST</span></span></Link><div className="topbar-right"><Link href="/client" className="btn secondary">Mi portal</Link><Link href="/investor" className="btn secondary">Portal inversionista</Link></div></header>
+ return <div className="investor-portal"><header className="portal-topbar"><Link href="/"><BrandLogo compact /></Link><div className="topbar-right"><Link href="/client" className="btn secondary">Mi portal</Link><Link href="/investor" className="btn secondary">Portal inversionista</Link></div></header>
  <main className="dashboard"><div className="container dashboard-wide">
   <div className="dashboard-heading"><div><span className="eyebrow">BANQUISQUEYA & TRUST · CIERRE DOCUMENTAL</span><h1>{a.project_name}</h1><p className="muted">{a.application_number} · Documentación de cierre y aceptación.</p></div></div>
   <section className="notice-panel"><div><strong>{pending?pending+' documento(s) requieren tu aceptación':'Expediente documental actualizado'}</strong><p>Revisa cada documento antes de aceptar. Los documentos de BanQuisqueya & Trust permanecen sujetos a las aprobaciones y revisiones legales aplicables.</p></div></section>
