@@ -9,7 +9,7 @@ import { refreshMatches, updateMatch } from '../../../capital-matching/actions'\
 
 export default async function ProjectDetail({params}:{params:Promise<{id:string}>}){
  const {id}=await params; const s=await createClient()
- const [{data:p},{data:dash},{data:fin},{data:milestones},{data:updates},{data:exec},{data:risks},{data:issues},{data:decisions},{data:documents},{data:matches},{data:capitalCommunications}]=await Promise.all([
+ const [{data:p},{data:dash},{data:fin},{data:milestones},{data:updates},{data:exec},{data:risks},{data:issues},{data:decisions},{data:documents},{data:matches},{data:capitalCommunications},{data:disbControl}]=await Promise.all([
   s.from('projects').select('*').eq('id',id).maybeSingle(),
   s.from('project_execution_dashboard').select('*').eq('project_id',id).maybeSingle(),
   s.from('project_execution_financial_dashboard').select('*').eq('project_id',id).maybeSingle(),
@@ -20,7 +20,7 @@ export default async function ProjectDetail({params}:{params:Promise<{id:string}
   s.from('project_issues').select('*').eq('project_id',id).order('created_at',{ascending:false}).limit(10),
   s.from('project_decisions').select('*').eq('project_id',id).order('created_at',{ascending:false}).limit(10),
   s.from('project_document_register').select('*').eq('project_id',id).order('created_at',{ascending:false}),
-  s.from('capital_matching_dashboard').select('*').eq('project_id',id).order('match_score',{ascending:false}),\n  s.from('project_capital_communications').select('*').eq('project_id',id).order('created_at',{ascending:false}).limit(10)
+  s.from('capital_matching_dashboard').select('*').eq('project_id',id).order('match_score',{ascending:false}),\n  s.from('project_capital_communications').select('*').eq('project_id',id).order('created_at',{ascending:false}).limit(10),\n  s.from('project_disbursement_execution_control').select('*').eq('project_id',id).maybeSingle()
  ])
  if(!p)notFound()
  const money=(n:number)=>'USD '+Number(n||0).toLocaleString('en-US',{maximumFractionDigits:0})
@@ -36,7 +36,7 @@ export default async function ProjectDetail({params}:{params:Promise<{id:string}
    <div className="metric-card"><div className="metric-label">Funding gap</div><div className="metric-value">{money(dash.funding_gap)}</div></div>
   </div>}
   {fin&&<div className="metric-grid" style={{marginTop:20}}><div className="metric-card"><div className="metric-label">Órdenes de compra</div><div className="metric-value">{fin.purchase_order_count}</div><div className="metric-caption">{money(fin.purchase_order_value)}</div></div><div className="metric-card"><div className="metric-label">Cubicaciones aprobadas</div><div className="metric-value">{fin.approved_cubicaciones}</div><div className="metric-caption">{money(fin.approved_cubicacion_value)}</div></div><div className="metric-card"><div className="metric-label">Desembolsos pagados</div><div className="metric-value">{fin.paid_disbursements}</div><div className="metric-caption">{money(fin.paid_value)}</div></div><div className="metric-card"><div className="metric-label">Disponible presupuesto</div><div className="metric-value">{money(fin.remaining_budget)}</div></div></div>}
-  <div className="dashboard-columns" style={{marginTop:20}}>
+  <section className="panel" style={{marginTop:20}}><div className="panel-heading"><div><div className="eyebrow">DISBURSEMENT → EXECUTION</div><h2>Control de desembolsos y movilización</h2><p className="muted">El primer desembolso pagado habilita el avance operativo desde movilización, sujeto a los controles de ejecución existentes.</p></div><span className="status-chip">{disbControl?.execution_status||exec?.status||'—'}</span></div><div className="metric-grid"><div className="metric-card"><div className="metric-label">Primer desembolso</div><div className="metric-value">{disbControl?.first_disbursement_ready?'READY':'PENDING'}</div></div><div className="metric-card"><div className="metric-label">Desembolsado</div><div className="metric-value">{money(disbControl?.total_disbursed)}</div></div><div className="metric-card"><div className="metric-label">Pendiente de pago</div><div className="metric-value">{money(disbControl?.pending_disbursement)}</div></div><div className="metric-card"><div className="metric-label">Pagos realizados</div><div className="metric-value">{disbControl?.paid_disbursements||0}</div></div></div></section>\n<div className="dashboard-columns" style={{marginTop:20}}>
    <section className="panel"><div className="panel-heading"><div><div className="eyebrow">Ejecución</div><h2>Avance del proyecto</h2></div></div>
     <div className="pipeline-list"><div className="pipeline-track"><span style={{width:(dash?.physical_progress||0)+'%'}}/></div><strong>Avance físico: {Number(dash?.physical_progress||0).toFixed(1)}%</strong><div className="pipeline-track"><span style={{width:(dash?.financial_progress||0)+'%'}}/></div><strong>Avance financiero: {Number(dash?.financial_progress||0).toFixed(1)}%</strong></div>
     <p className="muted">Hitos retrasados: {dash?.delayed_milestones||0} · Última actualización: {dash?.last_update||'—'}</p>
