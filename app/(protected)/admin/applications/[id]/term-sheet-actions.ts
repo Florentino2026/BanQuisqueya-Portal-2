@@ -18,6 +18,8 @@ export async function prepareClosingPackage(f:FormData){
  const {data:client}=await s.from('clients').select('id,legal_name,contact_name,kyc_status,email').eq('id',a.client_id).maybeSingle();
  if(!client)throw new Error('No se encontró el cliente.');
  if(client.kyc_status!=='approved')throw new Error('El KYC del cliente debe estar aprobado antes de emitir el paquete de cierre.');
+ const {data:approvedTerm}=await s.from('project_term_sheets').select('status').eq('application_id',application_id).maybeSingle();
+ if(!approvedTerm||!['approved_internal','issued','accepted'].includes(approvedTerm.status))throw new Error('El Term Sheet debe estar aprobado internamente, emitido o aceptado antes de emitir el paquete de cierre.');
  if(!['approved','conditionally_approved','term_sheet','contracting','closing'].includes(a.status))throw new Error('La solicitud todavía no está en una etapa habilitada para cierre documental.');
  const {data:term}=await s.from('project_term_sheets').select('*').eq('application_id',application_id).maybeSingle();
  const {data:legalDocs}=await s.from('legal_documents').select('id,code,name').in('code',['NDA','CAPITAL-MGMT','TERM-SHEET']).eq('active',true);
