@@ -66,7 +66,8 @@ export async function prepareClosingPackage(f:FormData){
   }
   const {data:dv}=await s.from('document_versions').insert({legal_document_id:ld.id,version:'1.0',title:d.title,content:contents[d.type],active:true}).select('id').single();
   if(!dv)continue;
-  await s.from('project_document_deliveries').upsert({application_id,client_id:a.client_id,legal_workflow_id:workflow.id,document_version_id:dv.id,document_type:d.type,title:d.title,version:'1.0',content:contents[d.type],status:'sent',requires_acceptance:true,sent_at:new Date().toISOString(),created_by:uid},{onConflict:'application_id,document_type'});
+  const {data:delivery,error:deliveryError}=await s.from('project_document_deliveries').upsert({application_id,client_id:a.client_id,legal_workflow_id:workflow.id,document_version_id:dv.id,document_type:d.type,title:d.title,version:'1.0',content:contents[d.type],status:'sent',requires_acceptance:true,sent_at:new Date().toISOString(),created_by:uid},{onConflict:'application_id,document_type'}).select('id').single();
+  if(deliveryError)throw new Error(deliveryError.message);
   await s.from('project_legal_workflows').update({status:'sent',sent_at:new Date().toISOString(),updated_at:new Date().toISOString()}).eq('id',workflow.id);
  }
  revalidatePath('/admin/applications/'+application_id);
