@@ -1,4 +1,6 @@
-import { createClient } from '@/lib/supabase/server'\nimport { roomAction, acknowledgeConfidentiality } from './actions'\nimport Link from 'next/link'
+import { createClient } from '@/lib/supabase/server'
+import { roomAction, acknowledgeConfidentiality } from './actions'
+import Link from 'next/link'
 export default async function PartnerRoom({params}:{params:Promise<{id:string}>}){
  const {id}=await params;const s=await createClient();const{data:u}=await s.auth.getUser();if(!u.user)return null
  const{data:p}=await s.from('capital_partner_profiles').select('id,organization_name,display_name,portal_status,onboarding_status').eq('user_id',u.user.id).maybeSingle()
@@ -10,7 +12,8 @@ export default async function PartnerRoom({params}:{params:Promise<{id:string}>}
  const[{data:docs},{data:mandate},{data:project},{data:activity}]=await Promise.all([
   s.from('capital_room_documents').select('id,document_type,title,description,status,version,confidentiality,expiry_date,storage_path').eq('room_id',id).in('status',['approved','shared','published']).order('created_at',{ascending:false}),
   s.from('capital_mandates').select('status,target_amount,currency,target_instrument,mandate_scope').eq('id',r.mandate_id).maybeSingle(),
-  s.from('projects').select('name,sector,location,description').eq('id',r.project_id).maybeSingle(),\n  s.from('capital_partner_room_activity').select('activity_type,subject,message,document_id,created_at').eq('room_id',id).eq('partner_id',p.id).order('created_at',{ascending:false}).limit(20)
+  s.from('projects').select('name,sector,location,description').eq('id',r.project_id).maybeSingle(),
+  s.from('capital_partner_room_activity').select('activity_type,subject,message,document_id,created_at').eq('room_id',id).eq('partner_id',p.id).order('created_at',{ascending:false}).limit(20)
  ])
  return <main className="dashboard-wide"><div className="dashboard-heading"><div><div className="eyebrow">Capital Partner · Secure Transaction Room</div><h1>{r.room_name}</h1><p className="muted">{project?.name||'Project'} · Authorized access: {a.access_level}</p></div><a className="btn secondary" href="/capital-partner">← Back to opportunities</a></div>
  <section className="metric-grid"><div className="metric-card"><span className="metric-label">Mandate</span><strong className="metric-value" style={{fontSize:18}}>{mandate?.status||'—'}</strong></div><div className="metric-card"><span className="metric-label">Target</span><strong className="metric-value">{Number(mandate?.target_amount||0).toLocaleString()} {mandate?.currency||''}</strong></div><div className="metric-card"><span className="metric-label">Instrument</span><strong className="metric-value" style={{fontSize:18}}>{mandate?.target_instrument||'—'}</strong></div><div className="metric-card"><span className="metric-label">Documents</span><strong className="metric-value">{(docs||[]).length}</strong></div></section>
