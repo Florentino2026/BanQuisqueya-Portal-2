@@ -5,7 +5,8 @@ import { updateApplication } from '../actions'
 import { saveStructuring, saveInvestmentMemo, generateInvestmentCommitteeMemo, saveSpv, addCapitalTranche } from './actions'
 import { saveTermSheet, updateTermSheetStatus, addLegalWorkflow, updateLegalWorkflow, prepareClosingPackage } from './term-sheet-actions'
 import { refreshFinancialClose, updateFinancialCloseItem } from './financial-close-actions'
-import { refreshCapitalization, saveCapitalCommitment, approveFinancialClose, closeFinancialClose, updateExecutionControl } from './capitalization-actions'\nimport { initializeLegalClosing, updateLegalRequirement } from './legal-closing-actions'
+import { refreshCapitalization, saveCapitalCommitment, approveFinancialClose, closeFinancialClose, updateExecutionControl } from './capitalization-actions'
+import { initializeLegalClosing, updateLegalRequirement } from './legal-closing-actions'
 const labels:Record<string,string>={draft:'Borrador',submitted:'Recibida',pre_screening:'Pre-screening',kyc_review:'KYC',contractual:'Contractual',underwriting:'Underwriting',due_diligence:'Due Diligence',investment_committee:'Comité de inversión',approved:'Aprobada',conditionally_approved:'Aprobada condicionalmente',rejected:'Rechazada',term_sheet:'Term Sheet',contracting:'Contratación',closing:'Cierre',funded:'Financiada',withdrawn:'Retirada'}
 const money=(n:any,c='USD')=>n==null?'—':Number(n).toLocaleString('en-US',{style:'currency',currency:c,maximumFractionDigits:0})
 function FinancialCloseChecklist({applicationId}:{applicationId:string}){
@@ -36,7 +37,12 @@ async function FinancialClosePanel({applicationId}:{applicationId:string}){
  </div>
 }
 
-\nasync function LegalClosingPanel({applicationId}:{applicationId:string}){\n const s=await createClient(); const [{data:items},{data:r}]=await Promise.all([s.from('legal_closing_requirements').select('*').eq('application_id',applicationId).order('created_at'),s.from('legal_closing_readiness').select('*').eq('application_id',applicationId).maybeSingle()]);\n return <><div className="grid" style={{marginTop:14}}><div className="card"><div className="muted">Required</div><div className="stat">{r?.required_count||0}</div></div><div className="card"><div className="muted">Completed</div><div className="stat">{r?.completed_count||0}</div></div><div className="card"><div className="muted">Legal readiness</div><div className="stat">{r?.ready?'READY':'PENDING'}</div></div></div><div className="table-wrap" style={{marginTop:14}}><table className="professional-table"><thead><tr><th>Requirement</th><th>Document</th><th>Status</th><th>Action</th></tr></thead><tbody>{(items||[]).map((x:any)=><tr key={x.id}><td><strong>{x.title}</strong></td><td>{x.document_type||'—'}</td><td><span className="status-chip">{x.status}</span></td><td><form action={updateLegalRequirement}><input type="hidden" name="id" value={x.id}/><input type="hidden" name="application_id" value={applicationId}/><select name="status" defaultValue={x.status}><option>pending</option><option>sent</option><option>signed</option><option>waived</option><option>complete</option></select><button className="btn secondary" style={{marginTop:5}}>Save</button></form></td></tr>)}</tbody></table></div></>}\n\nexport default async function ApplicationDetail({params}:{params:Promise<{id:string}>}){
+
+async function LegalClosingPanel({applicationId}:{applicationId:string}){
+ const s=await createClient(); const [{data:items},{data:r}]=await Promise.all([s.from('legal_closing_requirements').select('*').eq('application_id',applicationId).order('created_at'),s.from('legal_closing_readiness').select('*').eq('application_id',applicationId).maybeSingle()]);
+ return <><div className="grid" style={{marginTop:14}}><div className="card"><div className="muted">Required</div><div className="stat">{r?.required_count||0}</div></div><div className="card"><div className="muted">Completed</div><div className="stat">{r?.completed_count||0}</div></div><div className="card"><div className="muted">Legal readiness</div><div className="stat">{r?.ready?'READY':'PENDING'}</div></div></div><div className="table-wrap" style={{marginTop:14}}><table className="professional-table"><thead><tr><th>Requirement</th><th>Document</th><th>Status</th><th>Action</th></tr></thead><tbody>{(items||[]).map((x:any)=><tr key={x.id}><td><strong>{x.title}</strong></td><td>{x.document_type||'—'}</td><td><span className="status-chip">{x.status}</span></td><td><form action={updateLegalRequirement}><input type="hidden" name="id" value={x.id}/><input type="hidden" name="application_id" value={applicationId}/><select name="status" defaultValue={x.status}><option>pending</option><option>sent</option><option>signed</option><option>waived</option><option>complete</option></select><button className="btn secondary" style={{marginTop:5}}>Save</button></form></td></tr>)}</tbody></table></div></>}
+
+export default async function ApplicationDetail({params}:{params:Promise<{id:string}>}){
  const {id}=await params; const s=await createClient()
  const {data:a}=await s.from('funding_applications').select('*').eq('id',id).maybeSingle(); if(!a)notFound()
  const [{data:st},{data:term},{data:memo},{data:spv},{data:legal},{data:stack},{data:sources},{data:commitments},{data:summary},{data:execution},{data:closeControl}]=await Promise.all([
@@ -49,7 +55,8 @@ async function FinancialClosePanel({applicationId}:{applicationId:string}){
   s.from('capital_sources').select('id,name,status').order('name'),
   s.from('project_capital_commitments').select('*').eq('application_id',id).order('created_at',{ascending:false}),
   s.from('financial_close_summaries').select('*').eq('application_id',id).maybeSingle(),
-  s.from('project_execution_controls').select('*').eq('application_id',id).maybeSingle(),\n  s.from('financial_close_legal_control').select('*').eq('application_id',id).maybeSingle()
+  s.from('project_execution_controls').select('*').eq('application_id',id).maybeSingle(),
+  s.from('financial_close_legal_control').select('*').eq('application_id',id).maybeSingle()
  ])
  return <div className="dashboard"><div className="container">
  <Link href="/admin/applications">← Solicitudes</Link>
