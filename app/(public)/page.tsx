@@ -3,121 +3,181 @@ import BrandLogo from '@/components/BrandLogo'
 import LanguageSwitcher from '@/components/LanguageSwitcher'
 
 const sectors=[
-  ['01','ENERGY','Renewables · Generation · Natural resources'],
-  ['02','INFRASTRUCTURE','Transport · Logistics · Utilities'],
-  ['03','TOURISM','Hotels · Resorts · Marinas · Destinations'],
-  ['04','REAL ASSETS','Housing · Mixed-use · Urban development'],
-  ['05','HEALTH','Hospitals · Clinics · Health platforms'],
-  ['06','AGROINDUSTRY','Production · Processing · Value chains'],
-  ['07','INDUSTRIAL','Manufacturing · Industrial parks · Supply chain'],
-  ['08','TECHNOLOGY','Digital infrastructure · Innovation · Platforms'],
-]
-
-const stages=[
-  ['01','ORIGINATE','Opportunity, sponsor and strategic fit'],
-  ['02','ASSESS','Commercial, financial, technical and legal review'],
-  ['03','STRUCTURE','Capital stack, partnership and transaction architecture'],
-  ['04','DECIDE','Investment committee and governance controls'],
-  ['05','CLOSE','Conditions precedent, contracts and financial close'],
-  ['06','EXECUTE','Budget, procurement, reporting and controlled deployment'],
+  ['01','Energía e infraestructura','Energía renovable, generación, utilities, logística y activos estratégicos.'],
+  ['02','Turismo y hospitalidad','Hoteles, resorts, marinas, destinos y desarrollos de uso mixto.'],
+  ['03','Real estate & urban development','Vivienda, comunidades, desarrollos urbanos y activos inmobiliarios.'],
+  ['04','Salud','Hospitales, clínicas, plataformas de salud y proyectos especializados.'],
+  ['05','Agroindustria','Producción, procesamiento, almacenamiento y cadenas de valor.'],
+  ['06','Industria & tecnología','Manufactura, parques industriales, infraestructura digital e innovación.'],
 ]
 
 const capabilities=[
-  ['CAPITAL DESK','Relationships with banks, institutional sources, strategic partners and private capital.'],
-  ['PROJECT DEVELOPMENT','Structuring and development support from feasibility through execution.'],
-  ['JOINT VENTURES','Partnership structures combining sponsor contributions with capital and execution resources.'],
-  ['RISK & GOVERNANCE','Due diligence, approvals, documentation, controls and portfolio oversight.'],
+  ['01','Estructuración de capital','Diseñamos la arquitectura financiera y el capital stack de cada oportunidad.'],
+  ['02','Joint Ventures & desarrollo','Alineamos al sponsor, los activos, el capital y la ejecución bajo una estructura definida.'],
+  ['03','Capital Desk','Conectamos oportunidades calificadas con bancos, instituciones y fuentes privadas o estratégicas.'],
+  ['04','Due diligence & governance','Evaluamos riesgos, documentación, contratos, controles y condiciones de cierre.'],
+]
+
+const process=[
+  ['01','Presentación','El sponsor presenta el proyecto y define el objetivo de la relación.'],
+  ['02','Evaluación','Analizamos proyecto, sponsor, mercado, estructura y documentación.'],
+  ['03','Estructuración','Definimos capital, JV, SPV, gobierno y arquitectura de la transacción.'],
+  ['04','Decisión','La oportunidad avanza por los controles internos y el proceso de aprobación.'],
+  ['05','Cierre','Contratos, condiciones precedentes y cierre financiero.'],
+  ['06','Ejecución','Desembolso controlado, procurement, reporting y seguimiento.'],
 ]
 
 export default function Home(){
- return <div className="bq-home">
-  <header className="bq-nav">
-   <div className="container bq-nav-inner">
-    <Link href="/" className="bq-brand"><BrandLogo/></Link>
-    <nav className="bq-nav-links">
-      <a href="#platform">Platform</a><a href="#approach">Approach</a><a href="#sectors">Sectors</a><a href="#process">Process</a><a href="#contact">Contact</a>
+ return <div className="bq-institutional-home">
+  <header className="bq5-nav">
+   <div className="container bq5-nav-inner">
+    <Link href="/" className="bq5-brand"><BrandLogo/></Link>
+    <nav className="bq5-nav-links" aria-label="Navegación principal">
+      <a href="#about">Quiénes Somos</a>
+      <a href="#services">Qué Hacemos</a>
+      <a href="#sectors">Sectores</a>
+      <a href="#projects">Proyectos</a>
+      <a href="#capital">Capital Partners</a>
+      <a href="#contact">Contacto</a>
     </nav>
-    <div className="bq-nav-actions"><LanguageSwitcher/><Link href="/login" className="bq-nav-login">Institutional Access</Link><Link href="/register" className="btn primary">Present a Project</Link></div>
+    <div className="bq5-nav-actions">
+      <LanguageSwitcher/>
+      <Link href="/login" className="bq5-access">Acceso Institucional</Link>
+      <Link href="/register" className="btn bq5-gold-btn">Presentar Proyecto</Link>
+    </div>
    </div>
   </header>
 
   <main>
-   <section className="bq-hero-v2">
-    <div className="bq-hero-v2-grid container">
-      <div className="bq-hero-v2-copy">
-        <div className="bq-overline"><span/> BANQUISQUEYA &amp; TRUST <em>·</em> DOMINICAN REPUBLIC</div>
-        <div className="bq-hero-v2-kicker">CAPITAL · PROJECTS · PARTNERSHIPS</div>
-        <h1>Structuring capital for the <i>real economy.</i></h1>
-        <p>BanQuisqueya &amp; Trust is a Dominican Republic-based platform for evaluating, structuring and developing strategic projects across Latin America and the Caribbean.</p>
-        <div className="bq-hero-actions"><Link href="/register" className="btn primary">Present an Opportunity</Link><a href="#platform" className="btn bq-outline">Explore Our Model</a></div>
-        <div className="bq-hero-v2-meta"><span>LATAM &amp; CARIBBEAN</span><span>PRIVATE &amp; INSTITUTIONAL CAPITAL</span><span>PROJECT DEVELOPMENT</span></div>
+   <section className="bq5-hero">
+    <div className="container bq5-hero-grid">
+      <div className="bq5-hero-copy">
+        <div className="bq5-label"><span/> BANQUISQUEYA &amp; TRUST <i>·</i> REPÚBLICA DOMINICANA</div>
+        <h1>Capital que <em>estructura.</em><br/>Proyectos que <em>transforman.</em></h1>
+        <p>Plataforma dominicana para evaluar, estructurar y desarrollar proyectos estratégicos en América Latina y el Caribe.</p>
+        <div className="bq5-actions">
+          <Link href="/register" className="btn bq5-gold-btn">Presentar una Oportunidad</Link>
+          <a href="#about" className="btn bq5-outline-btn">Conocer BanQuisqueya</a>
+        </div>
+        <div className="bq5-hero-note"><span>CAPITAL</span><b>·</b><span>PROJECT DEVELOPMENT</span><b>·</b><span>STRATEGIC PARTNERSHIPS</span></div>
       </div>
-      <div className="bq-command-visual" aria-hidden="true">
-        <div className="bq-command-grid"/>
-        <div className="bq-command-ring ring-a"/><div className="bq-command-ring ring-b"/>
-        <div className="bq-command-core"><small>CAPITAL + PROJECT</small><strong>STRUCTURE</strong><span>Evaluate · Partner · Execute</span></div>
-        <div className="bq-float-card fc-one"><small>CAPITAL DESK</small><strong>Relationship<br/>Architecture</strong><span>Bank · Institutional · Strategic</span></div>
-        <div className="bq-float-card fc-two"><small>PROJECT CONTROL</small><strong>Governance</strong><span>DD · Closing · Execution</span></div>
-      </div>
-    </div>
-    <div className="bq-hero-v2-bottom"><div className="container"><span>DOMINICAN REPUBLIC</span><span>LATIN AMERICA</span><span>CARIBBEAN</span><span>INSTITUTIONAL PLATFORM</span></div></div>
-   </section>
 
-   <section className="bq-strip">
-    <div className="container bq-strip-grid">
-      <div><strong>01</strong><span>CAPITAL INTELLIGENCE</span><p>Understand the project before defining the capital.</p></div>
-      <div><strong>02</strong><span>STRUCTURED PARTNERSHIPS</span><p>Align sponsors, capital sources and execution.</p></div>
-      <div><strong>03</strong><span>CONTROLLED EXECUTION</span><p>Carry governance from approval through deployment.</p></div>
-    </div>
-   </section>
-
-   <section className="bq-editorial" id="platform">
-    <div className="container bq-editorial-head">
-      <div><div className="bq-section-label">01 · THE PLATFORM</div><h2>Not a marketplace.<br/><span>A transaction platform.</span></h2></div>
-      <div><p>Our role is to transform opportunities into structured transactions through disciplined evaluation, capital architecture, partnerships and execution controls.</p><p>Projects may be presented for financing, joint venture, development, strategic partnership, co-investment or other structures, subject to due diligence and applicable legal and regulatory requirements.</p></div>
-    </div>
-    <div className="container bq-capability-v2">{capabilities.map(([title,desc],i)=><article key={title}><span>0{i+1}</span><h3>{title}</h3><p>{desc}</p><b>↗</b></article>)}</div>
-   </section>
-
-   <section className="bq-architecture" id="approach">
-    <div className="container">
-      <div className="bq-section-head light"><div><div className="bq-section-label">02 · TRANSACTION ARCHITECTURE</div><h2>Capital follows <span>structure.</span></h2></div><p>Each mandate is developed around project economics, sponsor contribution, risk, governance and the appropriate capital relationships.</p></div>
-      <div className="bq-architecture-map">
-        <div className="arch-node arch-project"><small>01</small><strong>PROJECT</strong><span>Land · Rights · Permits · Know-how</span></div>
-        <div className="arch-line l1"/><div className="arch-line l2"/><div className="arch-line l3"/>
-        <div className="arch-node arch-structure"><small>02</small><strong>STRUCTURE</strong><span>SPV · Capital Stack · JV · Governance</span></div>
-        <div className="arch-node arch-capital"><small>03</small><strong>CAPITAL SOURCES</strong><span>Banks · Institutional · Strategic · Private</span></div>
-        <div className="arch-node arch-execution"><small>04</small><strong>EXECUTION</strong><span>Contracts · Procurement · Disbursement · Reporting</span></div>
+      <div className="bq5-hero-architecture" aria-hidden="true">
+        <div className="bq5-arch-panel">
+          <div className="bq5-arch-top"><span>TRANSACTION ARCHITECTURE</span><b>01—04</b></div>
+          <div className="bq5-arch-lines"><i/><i/><i/><i/></div>
+          <div className="bq5-arch-center"><small>PROJECT + CAPITAL</small><strong>STRUCTURE</strong><span>Evaluate · Partner · Execute</span></div>
+          <div className="bq5-arch-card card-a"><small>CAPITAL DESK</small><strong>Institutional<br/>Relationships</strong><span>Banks · Funds · Strategic</span></div>
+          <div className="bq5-arch-card card-b"><small>PROJECT CONTROL</small><strong>Governance</strong><span>DD · Closing · Execution</span></div>
+        </div>
       </div>
     </div>
    </section>
 
-   <section className="bq-process-v2" id="process">
+   <section className="bq5-intro" id="about">
+    <div className="container bq5-two-col">
+      <div>
+        <div className="bq5-section-label">01 · QUIÉNES SOMOS</div>
+        <h2>Una plataforma para convertir oportunidades en <em>transacciones estructuradas.</em></h2>
+      </div>
+      <div className="bq5-copy">
+        <p>BanQuisqueya &amp; Trust trabaja desde República Dominicana con una visión regional para América Latina y el Caribe.</p>
+        <p>Evaluamos oportunidades, estructuramos relaciones de capital y acompañamos proyectos desde la definición de la estrategia hasta el cierre y la ejecución.</p>
+        <Link href="#services" className="bq5-text-link">Conocer nuestra plataforma <span>→</span></Link>
+      </div>
+    </div>
+    <div className="container bq5-principles">
+      <div><b>01</b><strong>Disciplina</strong><span>Evaluación antes de estructurar.</span></div>
+      <div><b>02</b><strong>Alineación</strong><span>Sponsor, capital y proyecto bajo una misma arquitectura.</span></div>
+      <div><b>03</b><strong>Gobernanza</strong><span>Controles desde la aprobación hasta la ejecución.</span></div>
+      <div><b>04</b><strong>Relaciones</strong><span>Capital institucional, bancario y estratégico.</span></div>
+    </div>
+   </section>
+
+   <section className="bq5-services" id="services">
     <div className="container">
-      <div className="bq-section-head"><div><div className="bq-section-label">03 · INSTITUTIONAL PROCESS</div><h2>From mandate to <span>execution.</span></h2></div><p>A defined workflow gives every project a clear path, documentation trail and decision point.</p></div>
-      <div className="bq-process-v2-grid">{stages.map(([n,t,d])=><article key={n}><div className="stage-no">{n}</div><h3>{t}</h3><p>{d}</p></article>)}</div>
+      <div className="bq5-section-head">
+        <div><div className="bq5-section-label">02 · QUÉ HACEMOS</div><h2>De la oportunidad a la <em>arquitectura financiera.</em></h2></div>
+        <p>Una metodología institucional para proyectos que requieren capital, socios, desarrollo y capacidad de ejecución.</p>
+      </div>
+      <div className="bq5-service-grid">
+        {capabilities.map(([n,t,d])=><article key={n}><b>{n}</b><h3>{t}</h3><p>{d}</p><a href="#contact">Explorar <span>→</span></a></article>)}
+      </div>
     </div>
    </section>
 
-   <section className="bq-sectors-v2" id="sectors">
+   <section className="bq5-capital" id="capital">
+    <div className="container bq5-capital-grid">
+      <div>
+        <div className="bq5-section-label light">03 · CAPITAL PARTNERS</div>
+        <h2>Relaciones de capital construidas alrededor del <em>proyecto.</em></h2>
+      </div>
+      <div className="bq5-capital-copy">
+        <p>Trabajamos con relaciones bancarias, institucionales, privadas y estratégicas de acuerdo con las características y necesidades de cada transacción.</p>
+        <div className="bq5-capital-list"><span>Bancos y entidades financieras</span><span>Capital institucional</span><span>Private capital &amp; family offices</span><span>Strategic investors</span><span>Development &amp; infrastructure partners</span></div>
+        <a href="#contact" className="btn bq5-light-btn">Iniciar una conversación</a>
+      </div>
+    </div>
+   </section>
+
+   <section className="bq5-sectors" id="sectors">
     <div className="container">
-      <div className="bq-section-head"><div><div className="bq-section-label">04 · FOCUS AREAS</div><h2>Where capital meets <span>the real economy.</span></h2></div><p>Strategic sectors where project quality, sponsor capability and disciplined execution can support durable economic impact.</p></div>
-      <div className="bq-sector-v2-grid">{sectors.map(([n,t,d])=><article key={n}><span>{n}</span><h3>{t}</h3><p>{d}</p><b>VIEW SECTOR ↗</b></article>)}</div>
+      <div className="bq5-section-head">
+        <div><div className="bq5-section-label">04 · SECTORES</div><h2>Donde el capital encuentra <em>economía real.</em></h2></div>
+        <p>Seleccionamos oportunidades donde la estructura, el sponsor y la ejecución pueden sostener un proyecto viable.</p>
+      </div>
+      <div className="bq5-sector-grid">
+       {sectors.map(([n,t,d])=><article key={n}><b>{n}</b><h3>{t}</h3><p>{d}</p><a href="#contact">Ver enfoque <span>→</span></a></article>)}
+      </div>
     </div>
    </section>
 
-   <section className="bq-sponsor">
-    <div className="container bq-sponsor-grid">
-      <div><div className="bq-section-label">05 · PROJECT SPONSORS</div><h2>You bring the opportunity.<br/><span>We build the architecture.</span></h2></div>
-      <div><p>Bring us a project, development opportunity or strategic transaction. Our platform captures the opportunity, organizes the information required for evaluation and provides a controlled workflow for structuring, due diligence and decision-making.</p><div className="bq-sponsor-points"><span>✓ Financing</span><span>✓ Joint Venture</span><span>✓ Development</span><span>✓ Strategic Partnership</span><span>✓ Co-investment</span></div><Link href="/register" className="btn primary">Start a Project Submission</Link></div>
+   <section className="bq5-projects" id="projects">
+    <div className="container bq5-projects-grid">
+      <div>
+        <div className="bq5-section-label">05 · PROYECTOS</div>
+        <h2>Presenta una oportunidad. <em>Construyamos la estructura.</em></h2>
+        <p>El portal permite presentar proyectos para evaluación y establecer una relación de trabajo bajo financiamiento, Joint Venture, desarrollo, alianza estratégica o co-inversión, sujeto a due diligence y a la documentación aplicable.</p>
+      </div>
+      <div className="bq5-project-actions">
+        <Link href="/register" className="btn bq5-gold-btn">Presentar un Proyecto</Link>
+        <Link href="/login" className="btn bq5-dark-btn">Acceso al Portal</Link>
+        <span>El portal institucional permite dar seguimiento a la información y al proceso de evaluación.</span>
+      </div>
     </div>
    </section>
 
-   <section className="bq-contact-v2" id="contact">
-    <div className="container"><div className="bq-contact-v2-box"><div><div className="bq-section-label">06 · INSTITUTIONAL RELATIONSHIP</div><h2>Build the next transaction.</h2><p>Capital structuring · project development · strategic partnerships.</p></div><div className="bq-contact-actions"><a href="mailto:info@banquisqueya.com" className="btn primary">info@banquisqueya.com</a><Link href="/login" className="btn bq-outline-dark">Institutional Access</Link></div></div></div>
+   <section className="bq5-process" id="process">
+    <div className="container">
+      <div className="bq5-section-head">
+        <div><div className="bq5-section-label">06 · PROCESO</div><h2>Una ruta clara desde el <em>mandato hasta la ejecución.</em></h2></div>
+        <p>El flujo combina evaluación, estructuración, due diligence, aprobación, cierre y ejecución controlada.</p>
+      </div>
+      <div className="bq5-process-grid">
+       {process.map(([n,t,d])=><article key={n}><b>{n}</b><h3>{t}</h3><p>{d}</p></article>)}
+      </div>
+    </div>
+   </section>
+
+   <section className="bq5-contact" id="contact">
+    <div className="container bq5-contact-box">
+      <div><div className="bq5-section-label">07 · CONTACTO</div><h2>Hablemos de la próxima <em>transacción.</em></h2><p>Capital structuring · Project development · Strategic partnerships</p></div>
+      <div className="bq5-contact-actions">
+        <a href="mailto:info@banquisqueya.com" className="btn bq5-gold-btn">info@banquisqueya.com</a>
+        <Link href="/register" className="btn bq5-dark-btn">Presentar Proyecto</Link>
+      </div>
+    </div>
    </section>
   </main>
 
-  <footer className="bq-footer"><div className="container bq-footer-grid"><div><BrandLogo compact/><p>Capital &amp; project development platform<br/>Dominican Republic · Latin America · Caribbean</p></div><div><small>PLATFORM</small><Link href="/register">Present a Project</Link><Link href="/login">Institutional Access</Link><Link href="/careers">Careers</Link></div><div><small>RELATIONSHIPS</small><a href="mailto:info@banquisqueya.com">info@banquisqueya.com</a><span>Dominican Republic</span><span>Latin America &amp; Caribbean</span></div></div><div className="container bq-footer-bottom"><span>© {new Date().getFullYear()} BanQuisqueya &amp; Trust</span><span>Private capital · Project development · Institutional partnerships</span></div></footer>
+  <footer className="bq5-footer">
+   <div className="container bq5-footer-grid">
+    <div><BrandLogo compact/><p>Capital · Project Development · Strategic Partnerships<br/>República Dominicana · LATAM · Caribe</p></div>
+    <div><small>NAVEGACIÓN</small><a href="#about">Quiénes Somos</a><a href="#services">Qué Hacemos</a><a href="#sectors">Sectores</a><a href="#process">Proceso</a></div>
+    <div><small>PORTAL</small><Link href="/register">Presentar Proyecto</Link><Link href="/login">Acceso Institucional</Link><Link href="/careers">Carreras</Link></div>
+    <div><small>CONTACTO</small><a href="mailto:info@banquisqueya.com">info@banquisqueya.com</a><span>República Dominicana</span><span>Latinoamérica &amp; Caribe</span></div>
+   </div>
+   <div className="container bq5-footer-bottom"><span>© {new Date().getFullYear()} BanQuisqueya &amp; Trust</span><span>Private capital · Project development · Institutional partnerships</span></div>
+  </footer>
  </div>
 }
