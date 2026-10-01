@@ -1,0 +1,3 @@
+-- Referrer / Finder Network v1
+-- Applied to Supabase project zeiesuikwjbxzcvehbkj.
+-- Source migration is maintained in Supabase migration history.
