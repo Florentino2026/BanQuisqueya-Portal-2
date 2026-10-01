@@ -384,3 +384,19 @@ body{background:var(--bq-paper);color:var(--bq-ink);font-family:Inter,ui-sans-se
  .investor-portal .dashboard-heading h1{font-size:34px!important}
  .client-portal-v4 .dashboard-heading{padding:28px 24px}
 }
+
+
+/* BanQuisqueya & Trust — Institutional Portal Design System v1 */
+:root{--bq-navy:#07182f;--bq-navy-2:#0d2b4d;--bq-gold:#c9a24a;--bq-line:#dce3eb;--bq-text:#15263b}
+body{background:#f3f5f8;color:var(--bq-text)}
+.shell{background:#f3f5f8;grid-template-columns:292px 1fr}.sidebar{background:linear-gradient(180deg,#06152b,#0a2340 55%,#0d2c4d);border-right:1px solid #ffffff12;padding:24px 18px;box-shadow:14px 0 40px rgba(5,19,39,.08)}
+.sidebar-brand{padding:5px 10px 24px;border-bottom:1px solid rgba(255,255,255,.1);margin-bottom:4px}.sidebar-brand .brand-mark{width:46px;height:46px}.sidebar-brand strong{font-family:Georgia,'Times New Roman',serif;letter-spacing:1.2px;font-size:13px}.sidebar-brand span{color:#aebed0}
+.sidebar-section{color:#7e98b3;font-size:9px;letter-spacing:2px;padding:24px 12px 8px}.sidebar-link{padding:12px 14px!important;margin:3px 0!important;border-radius:8px!important;color:#cbd8e6!important;font-size:12px}.sidebar-link:hover{background:rgba(255,255,255,.06)!important;border-color:rgba(201,162,74,.16)!important}.sidebar-switch{background:rgba(255,255,255,.045)!important;border-color:rgba(255,255,255,.09)!important}
+.portal-topbar{height:78px;background:rgba(255,255,255,.94);border-bottom:1px solid var(--bq-line);box-shadow:0 5px 24px rgba(9,27,49,.04);backdrop-filter:blur(18px);padding:0 34px}.shell-main{background:linear-gradient(180deg,#f7f8fa,#f2f4f7)}
+.dashboard{padding:42px 42px 70px}.dashboard-wide{max-width:1480px;margin:0 auto}.dashboard-heading{padding:28px 30px;margin-bottom:24px;background:linear-gradient(115deg,#081a33,#10395e 62%,#174d75);border-radius:3px 18px 18px 3px;box-shadow:0 18px 42px rgba(8,27,50,.12);color:#fff;position:relative;overflow:hidden}.dashboard-heading h1{font:600 38px/1.08 Georgia,'Times New Roman',serif;color:#fff}.dashboard-heading .muted{color:#c1d0df}.dashboard-heading .eyebrow{color:#d9bf79}
+.metric-grid{gap:14px}.metric-card{border-radius:12px;border:1px solid #dbe3eb;box-shadow:0 8px 26px rgba(13,35,58,.055)}.metric-card:hover{border-color:#c9a24a80}.metric-icon{background:#f3ead2;color:#765d1d}.metric-value{font-family:Georgia,'Times New Roman',serif}
+.panel{border-radius:12px;border:1px solid #dce3eb;box-shadow:0 8px 28px rgba(13,35,58,.045);padding:26px}.panel-heading h2{font:600 21px/1.2 Georgia,'Times New Roman',serif}.notice-panel{border-radius:12px;background:linear-gradient(120deg,#07182f,#123c61);box-shadow:0 14px 34px rgba(7,24,47,.14)}
+.professional-table{border-collapse:separate;border-spacing:0}.professional-table th{background:#eef2f6;color:#64748b}.professional-table tbody tr:hover{background:#fbfcfd}.status-chip{border:1px solid #d9e4ed;background:#f2f6fa;color:#254e70}
+.client-portal-v4{background:linear-gradient(180deg,#f6f7f8,#eef2f5)}.client-portal-v4 .client-timeline{padding:18px 10px;background:#fbfcfd;border:1px solid #e2e8ef;border-radius:10px}.investor-portal{background:linear-gradient(180deg,#f5f7f9,#eef2f5)}
+.bq-home{font-family:Arial,Helvetica,sans-serif}.bq-hero-v2 h1,.bq-hero h1,.bq-section-head h2,.bq-editorial h2,.bq-sponsor h2{font-family:Georgia,'Times New Roman',serif}
+@media(max-width:900px){.shell{grid-template-columns:1fr}.sidebar{position:relative;height:auto}.dashboard{padding:24px 18px 50px}.portal-topbar{padding:0 18px}.dashboard-heading{padding:24px 22px}.dashboard-heading h1{font-size:31px}}
