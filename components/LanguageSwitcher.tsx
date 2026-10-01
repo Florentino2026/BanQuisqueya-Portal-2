@@ -15,8 +15,8 @@ const translations:Record<string,string>={
 'Private capital · Project development · Institutional partnerships':'Capital privado · Desarrollo de proyectos · Alianzas institucionales'
 }
 
-export default function LanguageSwitcher(){
- const [lang,setLang]=useState<'EN'|'ES'>('EN')
+export default function LanguageSwitcher({locale}:{locale?:'en'|'es'|'pt'|'fr'}){
+ const [lang,setLang]=useState<'EN'|'ES'>(()=>locale==='es'?'ES':'EN')
  useEffect(()=>{const saved=(localStorage.getItem('bq_lang')||'EN') as 'EN'|'ES';setLang(saved)},[])
  function apply(next:'EN'|'ES'){
    localStorage.setItem('bq_lang',next);setLang(next);document.documentElement.lang=next==='ES'?'es':'en'
