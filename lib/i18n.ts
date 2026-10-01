@@ -79,6 +79,12 @@ export type TranslationKey = keyof typeof translations.es
 export function getTranslations(locale: Locale) {
   return translations[locale]
 }
+export async function getServerLocale(): Promise<Locale> {
+  const { cookies } = await import('next/headers')
+  const value = (await cookies()).get('bqt_locale')?.value
+  return isLocale(value) ? value : 'es'
+}
+
 export function isLocale(value: string | undefined): value is Locale {
   return !!value && (LOCALES as readonly string[]).includes(value)
 }
