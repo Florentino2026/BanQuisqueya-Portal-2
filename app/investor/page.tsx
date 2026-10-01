@@ -13,7 +13,7 @@ export default async function InvestorDashboard() {
  const {data:investor}=await s.from('investors').select('id,investor_type,status,kyc_status,country,risk_profile').eq('user_id',user.id).maybeSingle()
  const [{data:investments},{data:transactions}]=await Promise.all([
   s.from('investments').select('id,principal,currency,status,invested_at,maturity_date,project_id').eq('investor_id',investor?.id||'').order('created_at',{ascending:false}).limit(10),
-  s.from('transactions').select('id,type,amount,currency,status,transaction_date,description').order('transaction_date',{ascending:false}).limit(8)
+  s.from('transactions').select('id,type,amount,currency,status,transaction_date,description').eq('investor_id',investor?.id||'').order('transaction_date',{ascending:false}).limit(8)
  ])
  const totalByCurrency: Record<string, number>=(investments??[]).reduce((acc:Record<string,number>,item:any)=>{const c=item.currency||'USD';acc[c]=(acc[c]||0)+Number(item.principal||0);return acc},{})
  const totalInvested:number=Object.values(totalByCurrency).reduce((a:number,b:number)=>a+b,0)
