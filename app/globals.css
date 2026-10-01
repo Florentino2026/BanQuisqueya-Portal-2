@@ -118,3 +118,53 @@
 
 
 .bq-language-switcher{display:flex;align-items:center;gap:5px;margin-right:10px;font-size:12px;letter-spacing:.12em;font-weight:700}.bq-language-switcher button{border:0;background:transparent;padding:5px 2px;color:inherit;opacity:.55;cursor:pointer;font:inherit;letter-spacing:inherit}.bq-language-switcher button.active{opacity:1;text-decoration:underline;text-underline-offset:4px}.bq-language-switcher span{opacity:.35}
+
+/* BanQuisqueya & Trust — Institutional Portal UI v2 */
+:root{
+ --bq-navy:#061629;--bq-navy-2:#0b223d;--bq-blue:#173d63;--bq-gold:#c8a04b;
+ --bq-bg:#f3f6f9;--bq-line:#d9e1e9;--bq-text:#17263a;--bq-muted:#718096;
+}
+body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bq-bg)}
+.shell{background:var(--bq-bg)}
+.shell-main{background:linear-gradient(180deg,#f8fafc 0,#f1f5f8 100%);min-height:100vh}
+.sidebar{background:linear-gradient(180deg,#041324 0%,#09213b 58%,#07182c 100%);border-right:1px solid #ffffff10}
+.sidebar-brand{padding:8px 10px 24px}.sidebar-brand strong{font-size:13px;letter-spacing:.2px}.sidebar-brand span{color:#9cafc2}
+.sidebar-section{color:#7189a3;letter-spacing:2px;margin-top:4px}
+.sidebar-link{transition:all .18s ease!important}
+.sidebar-link:hover{background:#ffffff0b!important;border-color:#ffffff12!important;transform:translateX(2px)}
+.sidebar-link[href="/admin"],.sidebar-link[href="/investor"]{font-weight:800}
+.portal-topbar{
+ height:82px!important;background:rgba(255,255,255,.94)!important;border-bottom:1px solid #dfe6ee!important;
+ box-shadow:0 8px 30px rgba(6,22,41,.05);backdrop-filter:blur(18px)
+}
+.dashboard{padding:42px 0 70px}
+.dashboard-wide{max-width:1440px}
+.dashboard-heading{margin-bottom:34px}
+.dashboard-heading h1{font-family:Georgia,"Times New Roman",serif;font-weight:500;font-size:42px;letter-spacing:-1.2px;color:#081d34}
+.eyebrow{color:#9a7532;letter-spacing:2.2px}
+.metric-grid{gap:18px}
+.metric-card{
+ border:1px solid #dce4ec;background:linear-gradient(145deg,#fff,#f9fbfd);
+ border-radius:4px;min-height:132px;padding:23px;box-shadow:0 10px 32px rgba(10,31,55,.055);
+ transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease
+}
+.metric-card:hover{transform:translateY(-3px);box-shadow:0 16px 38px rgba(10,31,55,.10);border-color:#c9a24a88}
+.metric-icon{border-radius:3px;background:#edf3f8;color:#9b7636;border:1px solid #dfe7ef}
+.metric-value{font-family:Georgia,"Times New Roman",serif;font-weight:500;letter-spacing:-.5px}
+.panel{
+ border:1px solid #dce4ec;border-radius:5px;background:rgba(255,255,255,.96);
+ box-shadow:0 12px 38px rgba(8,29,52,.055);padding:28px
+}
+.panel-heading h2{font-family:Georgia,"Times New Roman",serif;font-weight:500;font-size:22px}
+.text-link{color:#8b682f}.status-chip{border-radius:3px;background:#edf3f8;color:#315676;border:1px solid #dbe5ee}
+.pipeline-track{height:7px;background:#e9eef3}.pipeline-track span{background:linear-gradient(90deg,#163f65,#c8a04b)}
+.action-card{border-radius:4px;background:#fafcfd;border-color:#e0e6ed;transition:.18s}
+.action-card:hover{box-shadow:0 8px 24px rgba(8,29,52,.07);border-color:#c8a04b66}
+.notice-panel{border-radius:4px;background:linear-gradient(110deg,#061629,#12385d);box-shadow:0 18px 42px rgba(6,22,41,.18)}
+.professional-table th{background:#f2f5f8;color:#687b90}.professional-table td{padding:16px 14px;border-bottom-color:#e7edf2}
+.empty-state{border-radius:4px;background:#fafcfd}
+.admin-dashboard .metric-grid{grid-template-columns:repeat(3,1fr)}
+.admin-dashboard .metric-card:nth-child(1),.admin-dashboard .metric-card:nth-child(2){border-top:2px solid #c8a04b}
+.admin-dashboard .panel{margin-bottom:22px}
+@media(max-width:1000px){.admin-dashboard .metric-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:700px){.admin-dashboard .metric-grid{grid-template-columns:1fr}.dashboard-heading h1{font-size:34px}}
