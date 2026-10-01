@@ -26,5 +26,5 @@ export default async function AdminLayout({children}:{children:React.ReactNode})
   {(role==='admin'||role==='compliance'||role==='kyc_reviewer')&&<Link href="/admin/investors" className="sidebar-link">Inversionistas / KYC</Link>}
   {role==='admin'&&<Link href="/admin/staff" className="sidebar-link">Staff y roles</Link>}
   <div className="sidebar-footer"><Link href="/client" className="sidebar-switch">Vista cliente →</Link><Link href="/investor" className="sidebar-switch">Portal inversionista →</Link></div>
- </aside><main className="shell-main">{children}</main></div>
+ </aside><main className="shell-main"><header className="portal-topbar"><Link href="/"><BrandLogo compact/></Link><div style={{display:'flex',alignItems:'center',gap:18}}><span className="eyebrow" style={{margin:0}}>BANQUISQUEYA & TRUST · INSTITUTIONAL OPERATIONS</span><Link href="/client" className="btn secondary">Vista cliente</Link></div></header>{children}</main></div>
 }
