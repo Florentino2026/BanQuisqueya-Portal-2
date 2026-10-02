@@ -172,7 +172,7 @@ export default function Home(){
 
   <footer className="bq5-footer">
    <div className="container bq5-footer-grid">
-    <div><BrandLogo compact/><p>Capital · Project Development · Strategic Partnerships<br/>República Dominicana · LATAM · Caribe</p></div>
+    <div><BrandLogo/><p>Capital · Project Development · Strategic Partnerships<br/>República Dominicana · LATAM · Caribe</p></div>
     <div><small>NAVEGACIÓN</small><a href="#about">Quiénes Somos</a><a href="#services">Qué Hacemos</a><a href="#sectors">Sectores</a><a href="#process">Proceso</a></div>
     <div><small>PORTAL</small><Link href="/register">Presentar Proyecto</Link><Link href="/login">Acceso Institucional</Link><Link href="/careers">Carreras</Link></div>
     <div><small>CONTACTO</small><a href="mailto:info@banquisqueya.com">info@banquisqueya.com</a><span>República Dominicana</span><span>Latinoamérica &amp; Caribe</span></div>
