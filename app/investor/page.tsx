@@ -5,6 +5,7 @@ import { signOut } from './actions'
 import { isStaffRole, ROLE_LABELS } from '@/lib/auth/roles'
 import BrandLogo from '@/components/BrandLogo'
 import TimeGreeting from '@/components/TimeGreeting'
+import InvestorNav from '@/components/InvestorNav'
 
 const money=(value:number,currency='USD')=>value.toLocaleString('en-US',{style:'currency',currency,maximumFractionDigits:0})
 const date=(value:string|null)=>value?new Date(value).toLocaleDateString('es-DO',{year:'numeric',month:'short',day:'2-digit'}):'—'
