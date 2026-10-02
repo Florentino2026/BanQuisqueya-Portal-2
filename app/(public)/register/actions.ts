@@ -22,7 +22,8 @@ export async function registerInvestor(formData: FormData) {
     password,
     options: {
       data: {
-        full_name: name,\n        account_type: 'investor',
+        full_name: name,
+        account_type: 'investor',
       },
     },
   })
