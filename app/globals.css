@@ -508,3 +508,11 @@ body{background:#f3f5f8;color:var(--bq-text)}
   .bq5-brand .brand-subline{margin-top:4px}
   .bq5-brand .brand-subline span{font-size:8px;letter-spacing:2.5px}
 }
+
+
+.portal-institutional-nav{height:82px;background:#fff;border-bottom:1px solid #ddd9d0;box-shadow:0 4px 18px #10223b08}
+.portal-nav-inner{display:flex;align-items:center;justify-content:space-between;width:100%;height:100%}
+.portal-brand .brand-logo{min-width:auto}
+.portal-nav-meta{display:flex;align-items:center;gap:9px;color:#6b7785;font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase}
+.portal-status-dot{width:7px;height:7px;border-radius:50%;background:#c9a24a;box-shadow:0 0 0 4px #c9a24a18}
+@media(max-width:700px){.portal-institutional-nav{height:72px}.portal-nav-meta{font-size:8px;letter-spacing:1px}.portal-brand .brand-wordmark strong{font-size:16px}}
