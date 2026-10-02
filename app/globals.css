@@ -522,3 +522,17 @@ body{background:#f3f5f8;color:var(--bq-text)}
 .bq5-footer .brand-logo .brand-wordmark strong{color:#fff}
 .bq5-footer .brand-logo .brand-subline span{color:#c9a24a}
 .bq5-footer .brand-logo .brand-subline i{background:#c9a24a}
+
+
+.investor-topbar-brand{display:flex;align-items:center;min-width:245px}
+.investor-topbar-brand .brand-logo{gap:10px}
+.investor-topbar-brand .brand-mark{width:48px;height:48px}
+.investor-topbar-brand .brand-wordmark strong{font-size:18px;letter-spacing:2px}
+.investor-topbar-brand .brand-subline{margin-top:5px}
+.investor-topbar-brand .brand-subline span{font-size:9px;letter-spacing:3px}
+@media(max-width:800px){
+  .investor-topbar-brand{min-width:auto}
+  .investor-topbar-brand .brand-mark{width:42px;height:42px}
+  .investor-topbar-brand .brand-wordmark strong{font-size:15px;letter-spacing:1.5px}
+  .investor-topbar-brand .brand-subline span{font-size:7px;letter-spacing:2px}
+}
