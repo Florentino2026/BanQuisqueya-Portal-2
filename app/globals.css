@@ -466,3 +466,16 @@ body{background:#f3f5f8;color:var(--bq-text)}
  .bq5-hero h1{font-size:46px}.bq5-hero-grid{min-height:auto}.bq5-hero-architecture{padding:15px 0 45px}.bq5-arch-panel{height:390px}.bq5-arch-lines{width:310px;height:310px}.bq5-arch-center{width:140px;height:140px}.bq5-arch-center strong{font-size:22px}.card-a{right:12px;top:85px;width:150px}.card-b{left:12px;bottom:28px;width:155px}
  .bq5-two-col h2,.bq5-section-head h2,.bq5-capital h2,.bq5-projects h2,.bq5-process h2,.bq5-contact h2{font-size:36px}.bq5-principles,.bq5-service-grid,.bq5-sector-grid,.bq5-process-grid{grid-template-columns:1fr}.bq5-capital-list{grid-template-columns:1fr}.bq5-capital-list span:nth-child(even){padding-left:0;border-left:0}.bq5-contact-box{align-items:flex-start;flex-direction:column}.bq5-contact-actions{justify-content:flex-start}.bq5-footer-grid{grid-template-columns:1fr}.bq5-footer-bottom{flex-direction:column;gap:8px}
 }
+
+/* BanQuisqueya institutional investor layer */
+.portal-demo-badge{display:inline-flex;align-items:center;padding:7px 10px;border:1px solid #c7a76a;border-radius:999px;background:#fbf7ed;color:#80612d;font-size:10px;font-weight:800;letter-spacing:1.2px}
+.dashboard-heading-actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.panel-footer-note{margin-top:18px;padding:12px 14px;border-top:1px solid #e5ebf1;color:#667382;font-size:13px}
+.panel-footer-note strong{color:#182838}
+.investor-portal .dashboard-heading h1{letter-spacing:-.03em}
+.investor-portal .dashboard-heading .eyebrow,.investor-portal .panel-heading .eyebrow{display:block;margin-bottom:8px;color:#8c6b30;font-size:10px;font-weight:900;letter-spacing:1.8px}
+.investor-portal .notice-panel{border-color:#d9c79f;background:linear-gradient(90deg,#fbf8f0,#fff)}
+.investor-portal .allocation-row{padding:16px 0;border-bottom:1px solid #edf1f5}
+.investor-portal .allocation-row:last-child{border-bottom:0}
+.investor-portal .allocation-meta small{color:#778493}
+@media(max-width:900px){.portal-topbar{height:auto;min-height:72px;padding:12px 18px}.topbar-right{flex-wrap:wrap;justify-content:flex-end}.dashboard-heading-actions{width:100%}}
