@@ -479,3 +479,32 @@ body{background:#f3f5f8;color:var(--bq-text)}
 .investor-portal .allocation-row:last-child{border-bottom:0}
 .investor-portal .allocation-meta small{color:#778493}
 @media(max-width:900px){.portal-topbar{height:auto;min-height:72px;padding:12px 18px}.topbar-right{flex-wrap:wrap;justify-content:flex-end}.dashboard-heading-actions{width:100%}}
+
+
+ /* Final BanQuisqueya brand refinement */
+.brand-logo{display:flex;align-items:center;gap:12px;min-width:max-content}
+.brand-mark{width:58px;height:58px;flex:0 0 auto;object-fit:contain;display:block}
+.brand-wordmark{display:flex;flex-direction:column;justify-content:center;line-height:1}
+.brand-wordmark strong{font-family:Georgia,'Times New Roman',serif;font-size:21px;letter-spacing:2.5px;color:#14243a;font-weight:700}
+.brand-subline{display:flex;align-items:center;gap:7px;margin-top:6px}
+.brand-subline i{display:block;width:28px;height:1px;background:#c9a24a}
+.brand-subline span{font-size:10px;letter-spacing:4px;color:#9a7a3c;font-weight:700}
+.brand-logo.compact{gap:0}
+.brand-logo.compact .brand-mark{width:48px;height:48px}
+.bq5-brand .brand-logo{padding:2px 0}
+.bq5-footer .brand-logo.compact .brand-mark{width:52px;height:52px}
+.bq5-footer .brand-logo.compact{margin-bottom:4px}
+@media(max-width:1050px){
+  .bq5-nav-inner{gap:18px}
+  .bq5-nav-links{gap:18px}
+  .bq5-brand .brand-mark{width:52px;height:52px}
+  .bq5-brand .brand-wordmark strong{font-size:18px}
+  .brand-subline span{font-size:9px;letter-spacing:3.2px}
+}
+@media(max-width:700px){
+  .bq5-nav-inner{padding:10px 18px}
+  .bq5-brand .brand-mark{width:46px;height:46px}
+  .bq5-brand .brand-wordmark strong{font-size:16px;letter-spacing:1.8px}
+  .bq5-brand .brand-subline{margin-top:4px}
+  .bq5-brand .brand-subline span{font-size:8px;letter-spacing:2.5px}
+}
