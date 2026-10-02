@@ -16,10 +16,12 @@ export default async function InvestorDashboard(){
   const {data:profile}=await s.from('profiles').select('full_name,role').eq('id',user.id).maybeSingle()
   const {data:investor}=await s.from('investors').select('id,investor_type,status,kyc_status,country,risk_profile').eq('user_id',user.id).maybeSingle()
 
-  const [{data:investments},{data:transactions}]=await Promise.all([
-    s.from('investments').select('id,principal,currency,status,invested_at,maturity_date,project_id').eq('investor_id',investor?.id||'').order('created_at',{ascending:false}).limit(12),
-    s.from('transactions').select('id,type,amount,currency,status,transaction_date,description').eq('investor_id',investor?.id||'').order('transaction_date',{ascending:false}).limit(8)
-  ])
+  const [{data:investments},{data:transactions}]=investor?.id
+    ? await Promise.all([
+        s.from('investments').select('id,principal,currency,status,invested_at,maturity_date,project_id').eq('investor_id',investor.id).order('created_at',{ascending:false}).limit(12),
+        s.from('transactions').select('id,type,amount,currency,status,transaction_date,description').eq('investor_id',investor.id).order('transaction_date',{ascending:false}).limit(8)
+      ])
+    : [{data:[] as any[]},{data:[] as any[]}]
 
   const projectIds=(investments??[]).map(x=>x.project_id).filter(Boolean)
   const {data:projects}=projectIds.length
