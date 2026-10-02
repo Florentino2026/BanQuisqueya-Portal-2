@@ -4,6 +4,7 @@ import { createClient } from '@/lib/supabase/server'
 import { signOut } from './actions'
 import { isStaffRole, ROLE_LABELS } from '@/lib/auth/roles'
 import BrandLogo from '@/components/BrandLogo'
+import TimeGreeting from '@/components/TimeGreeting'
 
 const money=(value:number,currency='USD')=>value.toLocaleString('en-US',{style:'currency',currency,maximumFractionDigits:0})
 const date=(value:string|null)=>value?new Date(value).toLocaleDateString('es-DO',{year:'numeric',month:'short',day:'2-digit'}):'—'
@@ -37,7 +38,7 @@ export default async function InvestorDashboard(){
 
   return <div className="investor-portal">
     <header className="portal-topbar">
-      <Link href="/" aria-label="BanQuisqueya & Trust"><BrandLogo compact/></Link>
+      <Link href="/" className="investor-topbar-brand" aria-label="BanQuisqueya & Trust"><BrandLogo/></Link>
       <div className="topbar-right">
         <span className="portal-demo-badge">ENTORNO DEMO</span>
         {isStaffRole(profile?.role)&&<Link className="btn secondary" href="/admin">Administración · {ROLE_LABELS[profile!.role as keyof typeof ROLE_LABELS]}</Link>}
@@ -51,7 +52,7 @@ export default async function InvestorDashboard(){
         <section className="dashboard-heading">
           <div>
             <span className="eyebrow">BANQUISQUEYA & TRUST · INVESTOR PORTAL</span>
-            <h1>Buenos días, {displayName}</h1>
+            <h1><TimeGreeting name={displayName}/></h1>
             <p className="muted">Vista institucional de capital, posiciones, movimientos y cumplimiento.</p>
           </div>
           <div className="dashboard-heading-actions">
