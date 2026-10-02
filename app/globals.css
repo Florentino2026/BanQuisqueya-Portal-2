@@ -536,3 +536,15 @@ body{background:#f3f5f8;color:var(--bq-text)}
   .investor-topbar-brand .brand-wordmark strong{font-size:15px;letter-spacing:1.5px}
   .investor-topbar-brand .brand-subline span{font-size:7px;letter-spacing:2px}
 }
+
+
+/* Investor portal institutional navigation and modules */
+.investor-module-nav{display:flex;align-items:center;gap:4px;margin:0 0 24px;padding:6px;background:#fff;border:1px solid #dce3eb;border-radius:12px;box-shadow:0 6px 20px rgba(13,35,58,.04);overflow-x:auto}
+.investor-module-nav a{flex:0 0 auto;padding:10px 14px;border-radius:8px;color:#5f6d7c;font-size:11px;font-weight:800;letter-spacing:.25px;white-space:nowrap}
+.investor-module-nav a:hover{background:#f3f6f8;color:#1b3c5b}
+.investor-module-nav a.active{background:#102f4d;color:#fff;box-shadow:0 4px 12px rgba(16,47,77,.16)}
+.project-opportunity-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-bottom:20px}
+.project-opportunity-card{background:#fff;border:1px solid #dce3eb;border-radius:14px;padding:24px;box-shadow:0 8px 26px rgba(13,35,58,.045);display:flex;flex-direction:column;min-height:340px}
+.project-card-top{display:flex;justify-content:space-between;gap:12px;align-items:center}.project-opportunity-card h2{font:600 25px/1.15 Georgia,'Times New Roman',serif;color:#172a3d;margin:17px 0 10px}.project-opportunity-card>p{font-size:13px;line-height:1.65;color:#667382;min-height:64px;margin:0 0 18px}
+.project-facts{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid #e5eaf0;margin-top:auto}.project-facts div{padding:12px 0;border-bottom:1px solid #e5eaf0}.project-facts div:nth-child(even){padding-left:16px;border-left:1px solid #e5eaf0}.project-facts span,.profile-detail-grid span{display:block;font-size:9px;text-transform:uppercase;letter-spacing:1.1px;color:#8a96a6;font-weight:800}.project-facts strong,.profile-detail-grid strong{display:block;margin-top:5px;font-size:12px;color:#20384e}.project-card-footer{display:flex;justify-content:space-between;gap:12px;align-items:center;padding-top:16px;font-size:10px;color:#8a96a6}.profile-detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid #e5eaf0}.profile-detail-grid>div{padding:15px 0;border-bottom:1px solid #e5eaf0}.profile-detail-grid>div:nth-child(even){padding-left:18px;border-left:1px solid #e5eaf0}.review-row{display:flex;justify-content:space-between;gap:20px;padding:15px 0;border-bottom:1px solid #e5eaf0}.review-row:last-child{border-bottom:0}.review-row strong{color:#1d3850;font-size:13px}.review-row p{margin:5px 0 0;color:#6d7986;font-size:11px;line-height:1.5}.review-row small{white-space:nowrap;color:#8a96a6;font-size:10px}
+@media(max-width:900px){.project-opportunity-grid{grid-template-columns:1fr}.profile-detail-grid{grid-template-columns:1fr}.profile-detail-grid>div:nth-child(even){padding-left:0;border-left:0}.review-row{flex-direction:column;gap:6px}}
