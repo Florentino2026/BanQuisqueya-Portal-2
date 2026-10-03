@@ -50,6 +50,7 @@ export default async function InvestorDashboard(){
 
     <main className="dashboard">
       <div className="container dashboard-wide">
+        <InvestorNav active="Dashboard"/>
         <section className="dashboard-heading">
           <div>
             <span className="eyebrow">BANQUISQUEYA & TRUST · INVESTOR PORTAL</span>
