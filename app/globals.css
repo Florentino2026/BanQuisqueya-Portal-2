@@ -572,3 +572,7 @@ body{background:#f3f5f8;color:var(--bq-text)}
  .careers-form{padding:22px}
  .footer-grid{grid-template-columns:1fr}
 }
+
+/* Referrer registration centering */
+.auth > div{width:min(620px,100%);margin:0 auto}
+.auth > div > .form{width:100%;box-sizing:border-box}
