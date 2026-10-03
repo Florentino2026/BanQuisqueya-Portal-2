@@ -43,7 +43,7 @@ export default function Home(){
     <div className="bq5-nav-actions">
       <LanguageSwitcher/>
       <Link href="/login" className="bq5-access">Acceso Institucional</Link>
-      <Link href="/register" className="btn bq5-gold-btn">Presentar Proyecto</Link>
+      <Link href="/register" className="btn bq5-gold-btn">Presentar Proyecto</Link><Link href="/referidor/registro" className="btn bq5-referrer-btn">Regístrate como Referidor</Link>
     </div>
    </div>
   </header>
@@ -174,7 +174,7 @@ export default function Home(){
    <div className="container bq5-footer-grid">
     <div><BrandLogo/><p>Capital · Project Development · Strategic Partnerships<br/>República Dominicana · LATAM · Caribe</p></div>
     <div><small>NAVEGACIÓN</small><a href="#about">Quiénes Somos</a><a href="#services">Qué Hacemos</a><a href="#sectors">Sectores</a><a href="#process">Proceso</a></div>
-    <div><small>PORTAL</small><Link href="/register">Presentar Proyecto</Link><Link href="/login">Acceso Institucional</Link><Link href="/careers">Carreras</Link></div>
+    <div><small>PORTAL</small><Link href="/register">Presentar Proyecto</Link><Link href="/login">Acceso Institucional</Link><Link href="/referidor/registro">Referidores de Proyectos</Link><Link href="/careers">Carreras</Link></div>
     <div><small>CONTACTO</small><a href="mailto:info@banquisqueya.com">info@banquisqueya.com</a><span>República Dominicana</span><span>Latinoamérica &amp; Caribe</span></div>
    </div>
    <div className="container bq5-footer-bottom"><span>© {new Date().getFullYear()} BanQuisqueya &amp; Trust</span><span>Private capital · Project development · Institutional partnerships</span></div>
