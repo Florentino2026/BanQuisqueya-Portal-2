@@ -49,36 +49,48 @@ export default function Home(){
   </header>
 
   <main>
-   <section className="bq5-hero bq5-hero-cinematic">
-    <div className="bq5-hero-cinematic-bg">
-      <div className="bq5-cinematic-grid"></div>
-      <div className="bq5-cinematic-glow"></div>
-      <div className="bq5-cinematic-bq">BQ</div>
-      <div className="bq5-cinematic-line line-a"></div>
-      <div className="bq5-cinematic-line line-b"></div>
-    </div>
-    <div className="container bq5-cinematic-inner">
-      <div className="bq5-cinematic-copy">
-        <div className="bq5-label light-label"><span/> BANQUISQUEYA &amp; TRUST <i>·</i> PRIVATE CAPITAL PLATFORM</div>
+   <section className="bq5-hero bq5-hero-editorial">
+    <div className="container bq5-hero-editorial-grid">
+      <div className="bq5-hero-copy">
+        <div className="bq5-label"><span/> BANQUISQUEYA &amp; TRUST <i>·</i> PRIVATE CAPITAL PLATFORM</div>
         <h1>Capital que <em>estructura.</em><br/>Proyectos que <em>transforman.</em></h1>
         <p>Evaluamos, estructuramos y acompañamos oportunidades de inversión y desarrollo en América Latina y el Caribe.</p>
         <div className="bq5-actions">
           <Link href="/register" className="btn bq5-gold-btn">Presentar una Oportunidad</Link>
-          <a href="#about" className="btn bq5-cinematic-outline">Conocer BanQuisqueya</a>
+          <a href="#about" className="btn bq5-outline-btn">Conocer BanQuisqueya</a>
         </div>
-        <div className="bq5-cinematic-regions"><span>REPÚBLICA DOMINICANA</span><i/> <span>LATAM</span><i/> <span>CARIBE</span></div>
+        <div className="bq5-hero-signature">
+          <span>DOMINICANA</span><b>01</b><span>LATAM</span><b>02</b><span>CARIBE</span><b>03</b>
+        </div>
       </div>
-      <div className="bq5-video-stage">
-        <div className="bq5-video-window">
-          <div className="bq5-video-top"><span>INSTITUTIONAL FILM</span><span>00:28</span></div>
-          <div className="bq5-video-placeholder">
-            <div className="bq5-film-word">PROJECTS<br/><em>THAT MOVE</em><br/>CAPITAL</div>
-            <div className="bq5-play"><span>▶</span></div>
-            <div className="bq5-film-sectors"><span>ENERGY</span><span>REAL ESTATE</span><span>TOURISM</span><span>INFRASTRUCTURE</span><span>INDUSTRY</span><span>TELECOM</span></div>
+
+      <div className="bq5-hero-architecture bq5-hero-architecture-final" aria-label="Arquitectura institucional de capital">
+        <div className="bq5-arch-panel">
+          <div className="bq5-arch-top"><span>CAPITAL ARCHITECTURE</span><b>BQ / 01—04</b></div>
+          <div className="bq5-arch-grid-lines"></div>
+          <div className="bq5-arch-orbit orbit-one"></div>
+          <div className="bq5-arch-orbit orbit-two"></div>
+          <div className="bq5-arch-orbit orbit-three"></div>
+          <div className="bq5-arch-axis axis-one"></div>
+          <div className="bq5-arch-axis axis-two"></div>
+
+          <div className="bq5-arch-core">
+            <small>BANQUISQUEYA</small>
+            <strong>BQ</strong>
+            <span>&amp; TRUST</span>
           </div>
-          <div className="bq5-video-bottom"><strong>VIDEO INSTITUCIONAL</strong><span>PROJECT DEVELOPMENT · CAPITAL STRUCTURING</span></div>
+
+          <div className="bq5-arch-node node-capital"><small>01</small><strong>CAPITAL</strong><span>Sources</span></div>
+          <div className="bq5-arch-node node-project"><small>02</small><strong>PROJECT</strong><span>Opportunity</span></div>
+          <div className="bq5-arch-node node-partner"><small>03</small><strong>PARTNERS</strong><span>Alignment</span></div>
+          <div className="bq5-arch-node node-execution"><small>04</small><strong>EXECUTION</strong><span>Governance</span></div>
+
+          <div className="bq5-arch-caption">EVALUATE · STRUCTURE · PARTNER · EXECUTE</div>
         </div>
-        <div className="bq5-video-note">EL VIDEO MOSTRARÁ PROYECTOS DE ECONOMÍA REAL<br/>EN REPÚBLICA DOMINICANA · LATAM · CARIBE</div>
+        <div className="bq5-dossier-footer">
+          <div><small>PLATFORM</small><strong>PROJECT · CAPITAL · EXECUTION</strong></div>
+          <div><small>REGION</small><strong>LATAM · CARIBE</strong></div>
+        </div>
       </div>
     </div>
    </section>
