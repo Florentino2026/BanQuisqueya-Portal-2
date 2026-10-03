@@ -27,7 +27,7 @@ export default function CareerForm({vacancies}:{vacancies:Vacancy[]}){
   if(dbError){await supabase.storage.from('career-cv').remove([path]);setError('No fue posible registrar la solicitud. Intenta nuevamente.');setLoading(false);return}
   e.currentTarget.reset();setMessage('Hemos recibido tu CV. Nuestro equipo revisará tu perfil de acuerdo con las oportunidades disponibles.');setLoading(false)
  }
- return <form onSubmit={submit} className="institutional" style={{maxWidth:900,margin:'0 auto'}}>
+ return <form onSubmit={submit} className="institutional careers-form">
   <div className="form-grid"><label>Nombre completo<input name="full_name" required /></label><label>Correo electrónico<input name="email" type="email" required /></label><label>Teléfono<input name="phone" /></label><label>País / ciudad<input name="country" /></label>
   <label>Área en la que deseas trabajar<select name="desired_area" required><option value="">Seleccionar</option><option>Dirección / Ejecutivo</option><option>Finanzas y Tesorería</option><option>Estructuración de Proyectos</option><option>Investment / Capital Markets</option><option>Project Management</option><option>Due Diligence / Riesgos</option><option>Legal / Contratos</option><option>Contabilidad</option><option>Procurement / Compras</option><option>Ingeniería / Supervisión</option><option>HSE / Seguridad y Medio Ambiente</option><option>Tecnología / IT</option><option>Relaciones Institucionales / CRM</option><option>Administración / Operaciones</option><option>Otra</option></select></label>
   <label>Vacante de interés<select name="vacancy_id"><option value="">Considerar para futuras oportunidades</option>{vacancies.map(v=><option key={v.id} value={v.id}>{v.title} · {v.department}</option>)}</select></label>
