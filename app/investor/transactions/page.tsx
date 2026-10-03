@@ -9,7 +9,7 @@ const date=(v:string|null)=>v?new Date(v).toLocaleDateString('es-DO',{year:'nume
 export default async function InvestorTransactions(){
   const s=await createClient(); const {data:{user}}=await s.auth.getUser(); if(!user) redirect('/login')
   const {data:inv}=await s.from('investors').select('id').eq('user_id',user.id).maybeSingle()
-  const {data:tx}=inv?.id?await s.from('transactions').select('id,type,amount,currency,status,transaction_date,reference,description').eq('investor_id',inv.id).order('transaction_date',{ascending:false}).limit(50)):{data:[] as any[]}
+  const {data:tx}=inv?.id?await s.from('transactions').select('id,type,amount,currency,status,transaction_date,reference,description').eq('investor_id',inv.id).order('transaction_date',{ascending:false}) .limit(50):{data:[] as any[]}
   const total=(tx||[]).reduce((n,x)=>n+Number(x.amount||0),0)
   return <div className="investor-portal"><header className="portal-topbar"><Link href="/investor" className="investor-topbar-brand"><span className="brand-logo"><img className="brand-mark" src="/banquisqueya-original-mark.webp" alt="BanQuisqueya & Trust"/><span className="brand-wordmark"><strong>BANQUISQUEYA</strong><span className="brand-subline"><i/> &amp; TRUST</span></span></span></Link><div className="topbar-right"><Link className="btn secondary" href="/investor/profile">Mi perfil</Link></div></header>
   <main className="dashboard"><div className="container dashboard-wide"><InvestorNav active="Movimientos"/>
