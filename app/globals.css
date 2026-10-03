@@ -633,3 +633,9 @@ body{background:#f3f5f8;color:var(--bq-text)}
 .bq5-hero-architecture-final .bq5-dossier-footer{background:#132333}
 @media(max-width:1050px){.bq5-hero-architecture-final{padding:20px 0 55px}.bq5-hero-architecture-final .bq5-arch-panel{height:460px}}
 @media(max-width:700px){.bq5-hero-architecture-final{padding:10px 0 42px}.bq5-hero-architecture-final .bq5-arch-panel{height:390px}.bq5-arch-orbit{width:310px;height:190px}.bq5-arch-orbit.orbit-two{width:245px;height:245px}.bq5-arch-orbit.orbit-three{width:350px;height:130px}.bq5-arch-core{width:125px;height:125px}.bq5-arch-core strong{font-size:44px}.bq5-arch-node{min-width:98px;padding:9px 10px}.node-capital{left:12px;top:52px}.node-project{right:10px;top:75px}.node-partner{left:14px;bottom:55px}.node-execution{right:12px;bottom:45px}.bq5-arch-caption{font-size:5.5px;letter-spacing:1.3px}}
+
+/* Hero without placeholder media */
+.bq5-hero-editorial-grid{grid-template-columns:minmax(0,920px);justify-content:start}
+.bq5-hero-editorial .bq5-hero-copy{max-width:850px}
+.bq5-hero-editorial .bq5-hero-copy>p{max-width:700px}
+@media(max-width:1050px){.bq5-hero-editorial-grid{grid-template-columns:1fr}.bq5-hero-editorial .bq5-hero-copy{max-width:none}}
