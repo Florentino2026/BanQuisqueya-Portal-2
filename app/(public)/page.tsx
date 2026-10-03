@@ -63,18 +63,33 @@ export default function Home(){
           <span>DOMINICANA</span><b>01</b><span>LATAM</span><b>02</b><span>CARIBE</span><b>03</b>
         </div>
       </div>
-      <div className="bq5-hero-dossier">
-        <div className="bq5-dossier-image">
-          <div className="bq5-grid-overlay"></div>
-          <div className="bq5-map-lines"><i/><i/><i/><i/></div>
-          <div className="bq5-dossier-marker marker-one"><b>ENERGY</b><span>125 MW</span></div>
-          <div className="bq5-dossier-marker marker-two"><b>TOURISM</b><span>US$280M</span></div>
-          <div className="bq5-dossier-marker marker-three"><b>LOGISTICS</b><span>LATAM</span></div>
-          <div className="bq5-dossier-monogram">BQ</div>
+
+      <div className="bq5-hero-architecture bq5-hero-architecture-final" aria-label="Arquitectura institucional de capital">
+        <div className="bq5-arch-panel">
+          <div className="bq5-arch-top"><span>CAPITAL ARCHITECTURE</span><b>BQ / 01—04</b></div>
+          <div className="bq5-arch-grid-lines"></div>
+          <div className="bq5-arch-orbit orbit-one"></div>
+          <div className="bq5-arch-orbit orbit-two"></div>
+          <div className="bq5-arch-orbit orbit-three"></div>
+          <div className="bq5-arch-axis axis-one"></div>
+          <div className="bq5-arch-axis axis-two"></div>
+
+          <div className="bq5-arch-core">
+            <small>BANQUISQUEYA</small>
+            <strong>BQ</strong>
+            <span>&amp; TRUST</span>
+          </div>
+
+          <div className="bq5-arch-node node-capital"><small>01</small><strong>CAPITAL</strong><span>Sources</span></div>
+          <div className="bq5-arch-node node-project"><small>02</small><strong>PROJECT</strong><span>Opportunity</span></div>
+          <div className="bq5-arch-node node-partner"><small>03</small><strong>PARTNERS</strong><span>Alignment</span></div>
+          <div className="bq5-arch-node node-execution"><small>04</small><strong>EXECUTION</strong><span>Governance</span></div>
+
+          <div className="bq5-arch-caption">EVALUATE · STRUCTURE · PARTNER · EXECUTE</div>
         </div>
         <div className="bq5-dossier-footer">
           <div><small>PLATFORM</small><strong>PROJECT · CAPITAL · EXECUTION</strong></div>
-          <div><small>FOCUS</small><strong>REAL ECONOMY</strong></div>
+          <div><small>REGION</small><strong>LATAM · CARIBE</strong></div>
         </div>
       </div>
     </div>
