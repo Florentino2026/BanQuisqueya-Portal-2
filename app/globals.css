@@ -577,8 +577,3 @@ body{background:#f3f5f8;color:var(--bq-text)}
 .auth > div{width:min(620px,100%);margin:0 auto}
 .auth > div > .form{width:100%;box-sizing:border-box}
 
-.bq5-referrer-btn{background:#fff;color:#7b5c28;border:1px solid #c7a76a;border-radius:3px;padding:12px 18px;white-space:nowrap}
-.bq5-referrer-btn:hover{background:#f7f0e2;color:#5e451e}
-.bq5-project-actions .bq5-referrer-btn{display:inline-flex}
-@media(max-width:1100px){.bq5-nav-actions .bq5-referrer-btn{display:none}}
-@media(max-width:800px){.bq5-project-actions{align-items:flex-start}.bq5-project-actions .bq5-referrer-btn{width:100%;justify-content:center}}
