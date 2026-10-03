@@ -614,3 +614,22 @@ body{background:#f3f5f8;color:var(--bq-text)}
 .bq5-process{background:#eeeae1}
 @media(max-width:1050px){.bq5-hero-editorial-grid{grid-template-columns:1fr;gap:20px}.bq5-hero-editorial .bq5-hero-copy{padding:75px 0 25px}.bq5-hero-dossier{justify-self:stretch;max-width:none}.bq5-dossier-image{height:440px}}
 @media(max-width:700px){.bq5-hero-editorial-grid{min-height:auto}.bq5-hero-editorial .bq5-hero-copy{padding:58px 0 18px}.bq5-hero-editorial .bq5-hero-copy h1{font-size:45px}.bq5-hero-dossier{padding:8px}.bq5-dossier-image{height:365px}.bq5-dossier-footer{height:auto;min-height:72px;grid-template-columns:1fr;gap:10px;padding:13px 15px}.bq5-dossier-monogram{font-size:210px}.marker-one{left:16px;top:55px}.marker-two{right:15px;top:170px}.marker-three{left:70px;bottom:45px}.bq5-projects-grid:before{font-size:210px}}
+
+/* Final no-photography hero: institutional capital architecture */
+.bq5-hero-architecture-final{padding:42px 0 42px 20px;display:flex;align-items:center}
+.bq5-hero-architecture-final .bq5-arch-panel{height:520px;background:#182838;border:1px solid #c9a24a55;box-shadow:0 25px 55px #17283818}
+.bq5-hero-architecture-final .bq5-arch-panel:before{background:linear-gradient(90deg,transparent 49.8%,#ffffff12 50%,transparent 50.2%),linear-gradient(0deg,transparent 49.8%,#ffffff12 50%,transparent 50.2%)}
+.bq5-arch-grid-lines{position:absolute;inset:0;background-image:linear-gradient(#ffffff09 1px,transparent 1px),linear-gradient(90deg,#ffffff09 1px,transparent 1px);background-size:46px 46px;opacity:.65}
+.bq5-arch-orbit{position:absolute;left:50%;top:49%;transform:translate(-50%,-50%);border:1px solid #c9a24a66;border-radius:50%;width:430px;height:260px}
+.bq5-arch-orbit:after{content:'';position:absolute;inset:35px;border:1px solid #ffffff20;border-radius:50%}
+.bq5-arch-orbit.orbit-two{width:340px;height:340px;transform:translate(-50%,-50%) rotate(55deg);border-color:#ffffff25}
+.bq5-arch-orbit.orbit-three{width:500px;height:180px;transform:translate(-50%,-50%) rotate(-24deg);border-color:#c9a24a40}
+.bq5-arch-axis{position:absolute;left:50%;top:14%;width:1px;height:72%;background:#c9a24a55;transform:rotate(22deg);transform-origin:center}
+.bq5-arch-axis.axis-two{transform:rotate(-48deg);background:#ffffff20}
+.bq5-arch-core{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:165px;height:165px;border:1px solid #c9a24a;background:#f5f0e6;color:#182838;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;box-shadow:0 20px 45px #00000030}
+.bq5-arch-core small{font-size:7px;letter-spacing:2px;font-weight:900;color:#8b6a31}.bq5-arch-core strong{font:700 58px/.85 Georgia,serif;letter-spacing:-5px;margin:8px 0 3px}.bq5-arch-core span{font-size:8px;letter-spacing:4px;color:#a9823c;font-weight:800}
+.bq5-arch-node{position:absolute;background:#1f3447;border:1px solid #ffffff20;padding:12px 15px;min-width:125px;color:#fff;box-shadow:0 12px 30px #00000022}.bq5-arch-node small{display:block;color:#c9a24a;font-size:7px;letter-spacing:1px}.bq5-arch-node strong{display:block;font-size:10px;letter-spacing:1.2px;margin:5px 0 3px}.bq5-arch-node span{display:block;color:#9eacb7;font-size:8px}.node-capital{left:28px;top:78px}.node-project{right:26px;top:112px}.node-partner{left:38px;bottom:72px}.node-execution{right:30px;bottom:58px}
+.bq5-arch-caption{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);font-size:7px;letter-spacing:2px;color:#aeb9c1;white-space:nowrap}
+.bq5-hero-architecture-final .bq5-dossier-footer{background:#132333}
+@media(max-width:1050px){.bq5-hero-architecture-final{padding:20px 0 55px}.bq5-hero-architecture-final .bq5-arch-panel{height:460px}}
+@media(max-width:700px){.bq5-hero-architecture-final{padding:10px 0 42px}.bq5-hero-architecture-final .bq5-arch-panel{height:390px}.bq5-arch-orbit{width:310px;height:190px}.bq5-arch-orbit.orbit-two{width:245px;height:245px}.bq5-arch-orbit.orbit-three{width:350px;height:130px}.bq5-arch-core{width:125px;height:125px}.bq5-arch-core strong{font-size:44px}.bq5-arch-node{min-width:98px;padding:9px 10px}.node-capital{left:12px;top:52px}.node-project{right:10px;top:75px}.node-partner{left:14px;bottom:55px}.node-execution{right:12px;bottom:45px}.bq5-arch-caption{font-size:5.5px;letter-spacing:1.3px}}
