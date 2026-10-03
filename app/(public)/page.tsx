@@ -49,31 +49,36 @@ export default function Home(){
   </header>
 
   <main>
-   <section className="bq5-hero">
-    <div className="container bq5-hero-grid">
+   <section className="bq5-hero bq5-hero-editorial">
+    <div className="container bq5-hero-editorial-grid">
       <div className="bq5-hero-copy">
-        <div className="bq5-label"><span/> BANQUISQUEYA &amp; TRUST <i>·</i> REPÚBLICA DOMINICANA</div>
+        <div className="bq5-label"><span/> BANQUISQUEYA &amp; TRUST <i>·</i> PRIVATE CAPITAL PLATFORM</div>
         <h1>Capital que <em>estructura.</em><br/>Proyectos que <em>transforman.</em></h1>
-        <p>Plataforma dominicana para evaluar, estructurar y desarrollar proyectos estratégicos en América Latina y el Caribe.</p>
+        <p>Evaluamos, estructuramos y acompañamos oportunidades de inversión y desarrollo en América Latina y el Caribe.</p>
         <div className="bq5-actions">
           <Link href="/register" className="btn bq5-gold-btn">Presentar una Oportunidad</Link>
           <a href="#about" className="btn bq5-outline-btn">Conocer BanQuisqueya</a>
         </div>
-        <div className="bq5-hero-note"><span>CAPITAL</span><b>·</b><span>PROJECT DEVELOPMENT</span><b>·</b><span>STRATEGIC PARTNERSHIPS</span></div>
+        <div className="bq5-hero-signature">
+          <span>DOMINICANA</span><b>01</b><span>LATAM</span><b>02</b><span>CARIBE</span><b>03</b>
+        </div>
       </div>
-
-      <div className="bq5-hero-architecture" aria-hidden="true">
-        <div className="bq5-arch-panel">
-          <div className="bq5-arch-top"><span>TRANSACTION ARCHITECTURE</span><b>01—04</b></div>
-          <div className="bq5-arch-lines"><i/><i/><i/><i/></div>
-          <div className="bq5-arch-center"><small>PROJECT + CAPITAL</small><strong>STRUCTURE</strong><span>Evaluate · Partner · Execute</span></div>
-          <div className="bq5-arch-card card-a"><small>CAPITAL DESK</small><strong>Institutional<br/>Relationships</strong><span>Banks · Funds · Strategic</span></div>
-          <div className="bq5-arch-card card-b"><small>PROJECT CONTROL</small><strong>Governance</strong><span>DD · Closing · Execution</span></div>
+      <div className="bq5-hero-dossier">
+        <div className="bq5-dossier-image">
+          <div className="bq5-grid-overlay"></div>
+          <div className="bq5-map-lines"><i/><i/><i/><i/></div>
+          <div className="bq5-dossier-marker marker-one"><b>ENERGY</b><span>125 MW</span></div>
+          <div className="bq5-dossier-marker marker-two"><b>TOURISM</b><span>US$280M</span></div>
+          <div className="bq5-dossier-marker marker-three"><b>LOGISTICS</b><span>LATAM</span></div>
+          <div className="bq5-dossier-monogram">BQ</div>
+        </div>
+        <div className="bq5-dossier-footer">
+          <div><small>PLATFORM</small><strong>PROJECT · CAPITAL · EXECUTION</strong></div>
+          <div><small>FOCUS</small><strong>REAL ECONOMY</strong></div>
         </div>
       </div>
     </div>
    </section>
-
    <section className="bq5-intro" id="about">
     <div className="container bq5-two-col">
       <div>
