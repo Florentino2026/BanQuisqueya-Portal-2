@@ -577,3 +577,40 @@ body{background:#f3f5f8;color:var(--bq-text)}
 .auth > div{width:min(620px,100%);margin:0 auto}
 .auth > div > .form{width:100%;box-sizing:border-box}
 
+
+/* Definitive institutional editorial homepage */
+.bq5-hero-editorial{background:#f4f1ea;border-bottom:1px solid #d7d0c4}
+.bq5-hero-editorial-grid{min-height:680px;display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+.bq5-hero-editorial .bq5-hero-copy{padding:92px 0 82px}
+.bq5-hero-editorial .bq5-hero-copy>p{max-width:590px}
+.bq5-hero-signature{display:flex;align-items:center;gap:12px;margin-top:48px;font-size:8px;font-weight:900;letter-spacing:1.8px;color:#7d817f}
+.bq5-hero-signature b{font-size:8px;color:#b9954a;font-weight:900}
+.bq5-hero-dossier{position:relative;width:100%;max-width:590px;justify-self:end;background:#182838;padding:12px;box-shadow:0 24px 55px #17283820}
+.bq5-dossier-image{position:relative;height:500px;overflow:hidden;background:radial-gradient(circle at 68% 28%,#3f6b85 0,#27475c 19%,#152f42 44%,#0b1d2e 78%)}
+.bq5-dossier-image:before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,#d7c7a015 0 30%,transparent 30% 70%,#c9a24a12 70%)}
+.bq5-grid-overlay{position:absolute;inset:0;background-image:linear-gradient(#ffffff12 1px,transparent 1px),linear-gradient(90deg,#ffffff12 1px,transparent 1px);background-size:58px 58px;transform:perspective(600px) rotateX(48deg) scale(1.25);transform-origin:center bottom;opacity:.55}
+.bq5-map-lines{position:absolute;inset:0;overflow:hidden}
+.bq5-map-lines:before,.bq5-map-lines:after{content:'';position:absolute;border:1px solid #c9a24a55;border-radius:50%;transform:rotate(-18deg)}
+.bq5-map-lines:before{width:520px;height:230px;left:40px;top:110px}.bq5-map-lines:after{width:680px;height:310px;left:-30px;top:55px}
+.bq5-map-lines i{position:absolute;height:1px;background:#c9a24a66;transform-origin:left center}.bq5-map-lines i:nth-child(1){width:380px;left:90px;top:190px;transform:rotate(16deg)}
+.bq5-map-lines i:nth-child(2){width:430px;left:170px;top:295px;transform:rotate(-27deg)}
+.bq5-map-lines i:nth-child(3){width:310px;left:35px;top:355px;transform:rotate(9deg)}
+.bq5-map-lines i:nth-child(4){width:300px;left:230px;top:115px;transform:rotate(57deg)}
+.bq5-dossier-marker{position:absolute;background:#f5f0e6;color:#182838;padding:9px 12px;min-width:105px;border-left:2px solid #c9a24a;box-shadow:0 10px 22px #00000024}
+.bq5-dossier-marker b{display:block;font-size:7px;letter-spacing:1.3px;color:#927033}.bq5-dossier-marker span{display:block;font:500 16px Georgia,serif;margin-top:3px}
+.marker-one{left:30px;top:78px}.marker-two{right:28px;top:220px}.marker-three{left:115px;bottom:72px}
+.bq5-dossier-monogram{position:absolute;right:-18px;bottom:-75px;font:700 270px/.8 Georgia,serif;color:#ffffff0a;letter-spacing:-30px}
+.bq5-dossier-footer{height:66px;display:grid;grid-template-columns:1.4fr .8fr;align-items:center;padding:0 18px;background:#182838;color:#fff}
+.bq5-dossier-footer small{display:block;font-size:7px;letter-spacing:1.6px;color:#c9a24a;margin-bottom:5px}.bq5-dossier-footer strong{font-size:9px;letter-spacing:1px;font-weight:800;color:#d8e0e5}
+.bq5-intro,.bq5-services,.bq5-capital,.bq5-sectors,.bq5-projects,.bq5-process,.bq5-contact{scroll-margin-top:90px}
+.bq5-services{background:#f1eee7}
+.bq5-service-grid article,.bq5-sector-grid article{background:transparent}
+.bq5-service-grid article:hover{background:#fff}
+.bq5-sector-grid article{min-height:240px}
+.bq5-projects{background:#162635;color:#fff;border-top:0;border-bottom:0}
+.bq5-projects h2{color:#fff}.bq5-projects p{color:#bfcad2}.bq5-project-actions span{color:#91a0aa}
+.bq5-projects-grid:before{content:'BQ';position:absolute;font:700 310px/.8 Georgia,serif;color:#ffffff04;right:7%;margin-top:-35px;pointer-events:none}.bq5-projects-grid{position:relative}
+.bq5-project-actions{position:relative;z-index:2}
+.bq5-process{background:#eeeae1}
+@media(max-width:1050px){.bq5-hero-editorial-grid{grid-template-columns:1fr;gap:20px}.bq5-hero-editorial .bq5-hero-copy{padding:75px 0 25px}.bq5-hero-dossier{justify-self:stretch;max-width:none}.bq5-dossier-image{height:440px}}
+@media(max-width:700px){.bq5-hero-editorial-grid{min-height:auto}.bq5-hero-editorial .bq5-hero-copy{padding:58px 0 18px}.bq5-hero-editorial .bq5-hero-copy h1{font-size:45px}.bq5-hero-dossier{padding:8px}.bq5-dossier-image{height:365px}.bq5-dossier-footer{height:auto;min-height:72px;grid-template-columns:1fr;gap:10px;padding:13px 15px}.bq5-dossier-monogram{font-size:210px}.marker-one{left:16px;top:55px}.marker-two{right:15px;top:170px}.marker-three{left:70px;bottom:45px}.bq5-projects-grid:before{font-size:210px}}
