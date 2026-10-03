@@ -43,7 +43,7 @@ export default function Home(){
     <div className="bq5-nav-actions">
       <LanguageSwitcher/>
       <Link href="/login" className="bq5-access">Acceso Institucional</Link>
-      <Link href="/register" className="btn bq5-gold-btn">Presentar Proyecto</Link><Link href="/referidor/registro" className="btn bq5-referrer-btn">Regístrate como Referidor</Link>
+      <Link href="/register" className="btn bq5-gold-btn">Presentar Proyecto</Link>
     </div>
    </div>
   </header>
