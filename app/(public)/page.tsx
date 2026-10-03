@@ -63,35 +63,6 @@ export default function Home(){
           <span>DOMINICANA</span><b>01</b><span>LATAM</span><b>02</b><span>CARIBE</span><b>03</b>
         </div>
       </div>
-
-      <div className="bq5-hero-architecture bq5-hero-architecture-final" aria-label="Arquitectura institucional de capital">
-        <div className="bq5-arch-panel">
-          <div className="bq5-arch-top"><span>CAPITAL ARCHITECTURE</span><b>BQ / 01—04</b></div>
-          <div className="bq5-arch-grid-lines"></div>
-          <div className="bq5-arch-orbit orbit-one"></div>
-          <div className="bq5-arch-orbit orbit-two"></div>
-          <div className="bq5-arch-orbit orbit-three"></div>
-          <div className="bq5-arch-axis axis-one"></div>
-          <div className="bq5-arch-axis axis-two"></div>
-
-          <div className="bq5-arch-core">
-            <small>BANQUISQUEYA</small>
-            <strong>BQ</strong>
-            <span>&amp; TRUST</span>
-          </div>
-
-          <div className="bq5-arch-node node-capital"><small>01</small><strong>CAPITAL</strong><span>Sources</span></div>
-          <div className="bq5-arch-node node-project"><small>02</small><strong>PROJECT</strong><span>Opportunity</span></div>
-          <div className="bq5-arch-node node-partner"><small>03</small><strong>PARTNERS</strong><span>Alignment</span></div>
-          <div className="bq5-arch-node node-execution"><small>04</small><strong>EXECUTION</strong><span>Governance</span></div>
-
-          <div className="bq5-arch-caption">EVALUATE · STRUCTURE · PARTNER · EXECUTE</div>
-        </div>
-        <div className="bq5-dossier-footer">
-          <div><small>PLATFORM</small><strong>PROJECT · CAPITAL · EXECUTION</strong></div>
-          <div><small>REGION</small><strong>LATAM · CARIBE</strong></div>
-        </div>
-      </div>
     </div>
    </section>
    <section className="bq5-intro" id="about">
