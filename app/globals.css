@@ -548,3 +548,27 @@ body{background:#f3f5f8;color:var(--bq-text)}
 .project-card-top{display:flex;justify-content:space-between;gap:12px;align-items:center}.project-opportunity-card h2{font:600 25px/1.15 Georgia,'Times New Roman',serif;color:#172a3d;margin:17px 0 10px}.project-opportunity-card>p{font-size:13px;line-height:1.65;color:#667382;min-height:64px;margin:0 0 18px}
 .project-facts{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid #e5eaf0;margin-top:auto}.project-facts div{padding:12px 0;border-bottom:1px solid #e5eaf0}.project-facts div:nth-child(even){padding-left:16px;border-left:1px solid #e5eaf0}.project-facts span,.profile-detail-grid span{display:block;font-size:9px;text-transform:uppercase;letter-spacing:1.1px;color:#8a96a6;font-weight:800}.project-facts strong,.profile-detail-grid strong{display:block;margin-top:5px;font-size:12px;color:#20384e}.project-card-footer{display:flex;justify-content:space-between;gap:12px;align-items:center;padding-top:16px;font-size:10px;color:#8a96a6}.profile-detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid #e5eaf0}.profile-detail-grid>div{padding:15px 0;border-bottom:1px solid #e5eaf0}.profile-detail-grid>div:nth-child(even){padding-left:18px;border-left:1px solid #e5eaf0}.review-row{display:flex;justify-content:space-between;gap:20px;padding:15px 0;border-bottom:1px solid #e5eaf0}.review-row:last-child{border-bottom:0}.review-row strong{color:#1d3850;font-size:13px}.review-row p{margin:5px 0 0;color:#6d7986;font-size:11px;line-height:1.5}.review-row small{white-space:nowrap;color:#8a96a6;font-size:10px}
 @media(max-width:900px){.project-opportunity-grid{grid-template-columns:1fr}.profile-detail-grid{grid-template-columns:1fr}.profile-detail-grid>div:nth-child(even){padding-left:0;border-left:0}.review-row{flex-direction:column;gap:6px}}
+
+
+/* Careers form — institutional layout */
+.careers-form{max-width:980px!important;margin:0 auto;background:#fff;border:1px solid #dfe7f0;border-radius:18px;padding:32px;box-shadow:0 10px 32px rgba(16,34,59,.07)}
+.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 24px;align-items:start}
+.form-grid label{display:block;font-size:12px;font-weight:800;letter-spacing:.2px;color:#334155}
+.form-grid input,.form-grid select,.form-grid textarea{display:block;width:100%;box-sizing:border-box;margin:8px 0 18px;padding:13px 14px;min-height:48px;border:1px solid #cfd8e3;border-radius:10px;background:#fff;color:#172a3d;font:inherit}
+.form-grid textarea{min-height:125px;resize:vertical;line-height:1.5}
+.form-grid .full{grid-column:1 / -1}
+.form-grid input[type=file]{padding:10px 12px;min-height:48px}
+.form-grid small{display:block;margin-top:-11px;margin-bottom:18px;font-size:11px;font-weight:500}
+.careers-form>.btn{margin-top:4px;min-height:48px;border:0;cursor:pointer}
+.careers-form>p{margin:12px 0 0}
+.footer{position:relative;display:block;clear:both;overflow:hidden;min-height:180px}
+.footer-grid{position:relative;display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;align-items:start}
+.footer-grid>div{min-width:0}
+.footer-grid strong{display:block;color:#fff}
+.footer-grid p{margin:10px 0;color:#dce6f2}
+@media(max-width:800px){
+ .form-grid{grid-template-columns:1fr}
+ .form-grid .full{grid-column:auto}
+ .careers-form{padding:22px}
+ .footer-grid{grid-template-columns:1fr}
+}
